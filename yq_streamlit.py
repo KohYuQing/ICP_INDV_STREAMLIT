@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import streamlit as st
-import pandas as pd
-import numpy as npP
-=======
+
 import streamlit 
->>>>>>> 619bed9144029ef935f43988a32d01039acceb8d
 import requests
 import pandas 
 from urllib.error import URLError
