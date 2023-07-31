@@ -1,6 +1,7 @@
 import streamlit 
 import requests
 import pandas 
+pip install snowpark
 import snowflake.connector
 from urllib.error import URLError
 streamlit.title('My Parents New Healthy Diner')
