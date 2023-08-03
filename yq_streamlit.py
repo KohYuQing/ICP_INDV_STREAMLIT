@@ -100,8 +100,11 @@ season_input = get_season()
 season_int = season_mapping[season_input]
 
 if st.button('Predict Price'):
-    input_data = [[season_int]]
-    input_df = pd.DataFrame(input_data, columns=['LOCATION_ID','SHIFT_NUMBER','CITY','ITEM_CATEGORY','SUBCATEGORY','MENU_TYPE',
+    input_data = [['LOCATION_ID','TOTAL_SALES_PER_ITEM','SHIFT_NUMBER','CITY','ITEM_CATEGORY','SUBCATEGORY','MENU_TYPE',
+                                                 'TRUCK_BRAND_NAME','MENU_ITEM_NAME','AVG_TEMPERATURE_AIR_2M_F','AVG_TEMPERATURE_WETBULB_2M_F',
+                                                 'AVG_TEMPERATURE_DEWPOINT_2M_F','AVG_TEMPERATURE_WINDCHILL_2M_F','AVG_WIND_SPEED_100M_MPH',
+                                                 season_int,'COG_PER_ITEM_USD','ITEM_PRICE','VAULE']]
+    input_df = pd.DataFrame(input_data, columns=['LOCATION_ID','TOTAL_SALES_PER_ITEM','SHIFT_NUMBER','CITY','ITEM_CATEGORY','SUBCATEGORY','MENU_TYPE',
                                                  'TRUCK_BRAND_NAME','MENU_ITEM_NAME','AVG_TEMPERATURE_AIR_2M_F','AVG_TEMPERATURE_WETBULB_2M_F',
                                                  'AVG_TEMPERATURE_DEWPOINT_2M_F','AVG_TEMPERATURE_WINDCHILL_2M_F','AVG_WIND_SPEED_100M_MPH',
                                                  'SEASON','COG_PER_ITEM_USD','ITEM_PRICE','VAULE'])
