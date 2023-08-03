@@ -98,3 +98,10 @@ def get_season():
     return season
 season_input = get_season()
 season_int = season_mapping[season_input]
+
+if st.button('Predict Price'):
+    input_data = [[season_int]]
+    input_df = pd.DataFrame(input_data, columns=['SEASON'])
+    prediction= xgbr_gs.predict(input_df)
+    output_data = [season_int, prediction[0]]
+    output_df = pd.DataFrame([output_data], columns=['SEASONS', 'PREDICTED PRICE'])
