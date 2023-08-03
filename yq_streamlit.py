@@ -50,15 +50,6 @@ def main():
     github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/snowflake_data.zip"
     df = read_csv_from_zipped_github(github_url)
 
-    if df is not None:
-        # Display the DataFrame in Streamlit
-        st.dataframe(df)
-    else:
-        st.error("Failed to read data from GitHub. Please check the URL and try again.")
-
-
-
-
 
 data = load_data()
 maintable = main()
