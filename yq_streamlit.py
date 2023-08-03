@@ -58,8 +58,7 @@ def load_pickled_object(file_path):
 data = load_data()
 maintable = main()
 
-xgbr_gs_path = 'xgbr_gs.pkl'
-scaler_path = 'scaler.pkl'
-
-rf = load_pickled_object(xgbr_gs_path)
-scaler = load_pickled_object(scaler_path)
+with open('xgbr_gs.pkl', 'rb') as file:
+    xgbr_gs = pickle.load(file)
+with open('scaler.pkl', 'rb') as file:
+    scaler = pickle.load(file)
