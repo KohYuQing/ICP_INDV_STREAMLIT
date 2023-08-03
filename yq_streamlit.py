@@ -5,7 +5,7 @@ import pydeck as pdk
 import joblib
 from joblib import load
 import pickle
-from sklearn import preprocessing
+from xgboost import XGBRegressor 
 import requests
 import zipfile
 from sklearn.ensemble import RandomForestRegressor
