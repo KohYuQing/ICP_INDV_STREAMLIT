@@ -17,13 +17,9 @@ st.sidebar.markdown("This web app allows you to explore the Airbnb listings in S
 @st.cache_data
 def load_data():
     # First load the original airbnb listtings dataset
-    data = pd.read_csv("listings.csv") #use this for the original dataset, before transformations and cleaning
+    data = pd.read_csv("final_data_noscaler.csv") #use this for the original dataset, before transformations and cleaning
     return data
 
-@st.cache_data
-def load_vis_data():
-    df = pd.read_csv('listings_new2.csv')
-    return data
 
 def read_csv_from_zipped_github(url):
     # Send a GET request to the GitHub URL
