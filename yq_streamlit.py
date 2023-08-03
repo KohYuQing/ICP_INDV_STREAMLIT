@@ -62,6 +62,7 @@ with open('scaler.pkl', 'rb') as file:
 df = pd.read_csv('final_data_noscaler.csv')
 total_sales = df[['TOTAL_SALES_PER_ITEM']]
 
+
 LOCATION_ID = df['LOCATION_ID']
 SHIFT_NUMBER= df['SHIFT_NUMBER']
 AVG_TEMPERATURE_AIR_2M_F = df['AVG_TEMPERATURE_AIR_2M_F']
@@ -144,12 +145,12 @@ if st.button('Predict Price'):
     input_data = [[LOCATION_ID,SHIFT_NUMBER,AVG_TEMPERATURE_AIR_2M_F,AVG_TEMPERATURE_WETBULB_2M_F,
                    AVG_TEMPERATURE_DEWPOINT_2M_F,AVG_TEMPERATURE_WINDCHILL_2M_F,
                    AVG_WIND_SPEED_100M_MPH,COG_PER_ITEM_USD,ITEM_PRICE,VALUE,
-                   SUBCATEGORY,menuitem_int,truckb_int,menut_int,itemcat_int,
+                   SUBCATEGORY,f"discount10%",menuitem_int,truckb_int,menut_int,itemcat_int,
                    city_int,season_int]]
     
     input_df = pd.DataFrame(input_data, columns=['LOCATION_ID','SHIFT_NUMBER','AVG_TEMPERATURE_AIR_2M_F','AVG_TEMPERATURE_WETBULB_2M_F',
                                                  'AVG_TEMPERATURE_DEWPOINT_2M_F','AVG_TEMPERATURE_WINDCHILL_2M_F','AVG_WIND_SPEED_100M_MPH'
-                                                 ,'COG_PER_ITEM_USD','ITEM_PRICE','VAULE','SUBCATEGORY','MENU_ITEM_NAME',
+                                                 ,'COG_PER_ITEM_USD','ITEM_PRICE','VAULE','SUBCATEGORY','discount10%','MENU_ITEM_NAME',
                                                  'TRUCK_BRAND_NAME','MENU_TYPE','ITEM_CATEGORY','CITY','SEASON'])
     prediction = xgbr_gs.predict(input_df)
     output_data = [LOCATION_ID,SHIFT_NUMBER,AVG_TEMPERATURE_AIR_2M_F,AVG_TEMPERATURE_WETBULB_2M_F,
