@@ -53,3 +53,8 @@ def main():
 
 data = load_data()
 maintable = main()
+
+with open('xgbr_gs.pkl', 'rb') as file:
+    rf = pickle.load(file)
+with open('scaler.pkl', 'rb') as file:
+    scaler = pickle.load(file)
