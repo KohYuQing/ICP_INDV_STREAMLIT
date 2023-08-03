@@ -62,4 +62,3 @@ if __name__ == "__main__":
 
 
 data = load_data()
-df = load_vis_data()
