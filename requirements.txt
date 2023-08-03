@@ -4,4 +4,4 @@ streamlit
 pandas
 scikit-learn
 pydeck
-
+xgboost
