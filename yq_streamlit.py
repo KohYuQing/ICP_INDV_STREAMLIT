@@ -153,4 +153,4 @@ if st.button('Predict Price'):
                                                  'AVG_TEMPERATURE_DEWPOINT_2M_F','AVG_TEMPERATURE_WINDCHILL_2M_F','AVG_WIND_SPEED_100M_MPH'
                                                  ,'COG_PER_ITEM_USD','ITEM_PRICE','VAULE','SUBCATEGORY','discount','MENU_ITEM_NAME',
                                                  'TRUCK_BRAND_NAME','MENU_TYPE','ITEM_CATEGORY','CITY','SEASON'])
-
+prediction = xgbr_gs.predict(input_df)
