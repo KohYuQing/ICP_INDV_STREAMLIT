@@ -43,33 +43,11 @@ def read_csv_from_zipped_github(url):
         st.error(f"Failed to retrieve data from {url}. Status code: {response.status_code}")
         return None
 
-def read_csv_from_zipped_github(url):
-    # Send a GET request to the GitHub URL
-    response = requests.get(url)
-
-    # Check if the request was successful
-    if response.status_code == 200:
-        # Create a BytesIO object from the response content
-        zip_file = io.BytesIO(response.content)
-
-        # Extract the contents of the zip file
-        with zipfile.ZipFile(zip_file, 'r') as zip_ref:
-            # Assume there is only one CSV file in the zip archive (you can modify this if needed)
-            csv_file_name = zip_ref.namelist()[0]
-            with zip_ref.open(csv_file_name) as csv_file:
-                # Read the CSV data into a Pandas DataFrame
-                df = pd.read_csv(csv_file)
-
-        return df
-    else:
-        st.error(f"Failed to retrieve data from {url}. Status code: {response.status_code}")
-        return None
-
 def main():
     st.title("Read CSV from Zipped File on GitHub")
 
     # Replace the 'github_url' variable with the actual URL of the zipped CSV file on GitHub
-    github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/snowflake_data.zip"
+    github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/blob/main/snowflake_data.zip"
     df = read_csv_from_zipped_github(github_url)
 
     if df is not None:
@@ -78,9 +56,7 @@ def main():
     else:
         st.error("Failed to read data from GitHub. Please check the URL and try again.")
 
-if __name__ == "__main__":
-    main()
-
 
 
 data = load_data()
+original = main()
