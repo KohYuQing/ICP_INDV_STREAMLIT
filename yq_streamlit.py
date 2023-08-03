@@ -50,10 +50,6 @@ def main():
     github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/snowflake_data.zip"
     df = read_csv_from_zipped_github(github_url)
 
-def load_pickled_object(file_path):
-    with open(file_path, 'rb') as file:
-        return pickle.load(file)
-
 
 data = load_data()
 maintable = main()
