@@ -56,7 +56,9 @@ def main():
     else:
         st.error("Failed to read data from GitHub. Please check the URL and try again.")
 
+if __name__ == "__main__":
+    main()
+
 
 
 data = load_data()
-original = main()
