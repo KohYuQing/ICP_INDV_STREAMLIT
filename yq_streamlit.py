@@ -58,3 +58,12 @@ with open('xgbr_gs.pkl', 'rb') as file:
     xgbr_gs = joblib.load(file)
 with open('scaler.pkl', 'rb') as file:
     scaler = joblib.load(file)
+
+df = pd.read_csv('final_data_noscaler.csv')
+total_sales = df[['TOTAL_SALES_PER_ITEM']]
+
+# Define the user input functions 
+
+season_mapping = {'WINTER': 0, 'SPRING': 1, 'SUMMER': 2, 'AUTUMN': 3}
+season_reverse_mapping = {v: k for k, v in season_mapping.items()}
+season_labels = list(season_mapping.keys())
