@@ -119,25 +119,25 @@ city_int = city_mapping[city_input]
 def get_itemcat():
     itemcat = st.selectbox('Select a Item Category', itemcat_labels)
     return itemcat
-itemcat_input = get_city()
+itemcat_input = get_itemcat()
 itemcat_int = itemcat_mapping[itemcat_input]
 
 def get_menut():
     menut = st.selectbox('Select a Menu Type', menut_labels)
     return menut
-menut_input = get_city()
+menut_input = get_menut()
 menut_int = menut_mapping[menut_input]
 
 def get_truckb():
     truckb = st.selectbox('Select a Truck Brand Name', truckb_labels)
     return truckb
-truckb_input = get_city()
+truckb_input = get_truckb()
 truckb_int = truckb_mapping[truckb_input]
 
 def get_menuitem():
     menuitem = st.selectbox('Select a Menu Item', menuitem_labels)
     return menuitem
-menuitem_input = get_city()
+menuitem_input = get_menuitem()
 menuitem_int = menuitem_mapping[menuitem_input]
 
 if st.button('Predict Price'):
