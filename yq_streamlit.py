@@ -50,11 +50,16 @@ def main():
     github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/snowflake_data.zip"
     df = read_csv_from_zipped_github(github_url)
 
+def load_pickled_object(file_path):
+    with open(file_path, 'rb') as file:
+        return pickle.load(file)
+
 
 data = load_data()
 maintable = main()
 
-with open('xgbr_gs.pkl', 'rb') as file:
-    rf = pickle.load(file)
-with open('scaler.pkl', 'rb') as file:
-    scaler = pickle.load(file)
+xgbr_gs_path = 'xgbr_gs.pkl'
+scaler_path = 'scaler.pkl'
+
+rf = load_pickled_object(xgbr_gs_path)
+scaler = load_pickled_object(scaler_path)
