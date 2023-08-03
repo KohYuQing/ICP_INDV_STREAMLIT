@@ -62,6 +62,17 @@ with open('scaler.pkl', 'rb') as file:
 df = pd.read_csv('final_data_noscaler.csv')
 total_sales = df[['TOTAL_SALES_PER_ITEM']]
 
+LOCATION_ID = df['LOCATION_ID']
+SHIFT_NUMBER= df['SHIFT_NUMBER']
+AVG_TEMPERATURE_AIR_2M_F = df['AVG_TEMPERATURE_AIR_2M_F']
+AVG_TEMPERATURE_WETBULB_2M_F = df['AVG_TEMPERATURE_WETBULB_2M_F']
+AVG_TEMPERATURE_DEWPOINT_2M_F= df['AVG_TEMPERATURE_DEWPOINT_2M_F']
+AVG_TEMPERATURE_WINDCHILL_2M_F = df['AVG_TEMPERATURE_WINDCHILL_2M_F']
+AVG_WIND_SPEED_100M_MPH  = df['AVG_WIND_SPEED_100M_MPH']
+COG_PER_ITEM_USD =df['COG_PER_ITEM_USD']
+ITEM_PRICE = df['ITEM_PRICE']
+VALUE = df['VALUE']
+SUBCATEGORY = df['SUBCATEGORY']                
 # Define the user input functions 
 
 season_mapping = {'WINTER': 0, 'SPRING': 1, 'SUMMER': 2, 'AUTUMN': 3}
@@ -99,22 +110,39 @@ def get_season():
 season_input = get_season()
 season_int = season_mapping[season_input]
 
-if st.button('Predict Price'):
-    input_data = [['LOCATION_ID','TOTAL_SALES_PER_ITEM','SHIFT_NUMBER','CITY','ITEM_CATEGORY','SUBCATEGORY','MENU_TYPE',
-                                                 'TRUCK_BRAND_NAME','MENU_ITEM_NAME','AVG_TEMPERATURE_AIR_2M_F','AVG_TEMPERATURE_WETBULB_2M_F',
-                                                 'AVG_TEMPERATURE_DEWPOINT_2M_F','AVG_TEMPERATURE_WINDCHILL_2M_F','AVG_WIND_SPEED_100M_MPH',
-                                                 season_int,'COG_PER_ITEM_USD','ITEM_PRICE','VAULE']]
-    input_df = pd.DataFrame(input_data, columns=['LOCATION_ID','TOTAL_SALES_PER_ITEM','SHIFT_NUMBER','CITY','ITEM_CATEGORY','SUBCATEGORY','MENU_TYPE',
-                                                 'TRUCK_BRAND_NAME','MENU_ITEM_NAME','AVG_TEMPERATURE_AIR_2M_F','AVG_TEMPERATURE_WETBULB_2M_F',
-                                                 'AVG_TEMPERATURE_DEWPOINT_2M_F','AVG_TEMPERATURE_WINDCHILL_2M_F','AVG_WIND_SPEED_100M_MPH',
-                                                 'SEASON','COG_PER_ITEM_USD','ITEM_PRICE','VAULE'])
-    prediction= xgbr_gs.predict(input_df)
+def get_city():
+    city = st.selectbox('Select a city', city_labels)
+    return city
+city_input = get_city()
+city_int = city_mapping[city_input]
 
-    output_data = ['LOCATION_ID','SHIFT_NUMBER','CITY','ITEM_CATEGORY','SUBCATEGORY','MENU_TYPE',
-                                                 'TRUCK_BRAND_NAME','MENU_ITEM_NAME','AVG_TEMPERATURE_AIR_2M_F','AVG_TEMPERATURE_WETBULB_2M_F',
-                                                 'AVG_TEMPERATURE_DEWPOINT_2M_F','AVG_TEMPERATURE_WINDCHILL_2M_F','AVG_WIND_SPEED_100M_MPH',
-                                                 season_int,'COG_PER_ITEM_USD','ITEM_PRICE','VAULE', prediction[0]]
-    output_df = pd.DataFrame([output_data], columns=['LOCATION_ID','SHIFT_NUMBER','CITY','ITEM_CATEGORY','SUBCATEGORY','MENU_TYPE',
-                                                 'TRUCK_BRAND_NAME','MENU_ITEM_NAME','AVG_TEMPERATURE_AIR_2M_F','AVG_TEMPERATURE_WETBULB_2M_F',
-                                                 'AVG_TEMPERATURE_DEWPOINT_2M_F','AVG_TEMPERATURE_WINDCHILL_2M_F','AVG_WIND_SPEED_100M_MPH',
-                                                 'SEASON','COG_PER_ITEM_USD','ITEM_PRICE','VAULE','PREDICTED_PRICE'])
+def get_itemcat():
+    itemcat = st.selectbox('Select a Item Category', itemcat_labels)
+    return itemcat
+itemcat_input = get_city()
+itemcat_int = itemcat_mapping[itemcat_input]
+
+def get_menut():
+    menut = st.selectbox('Select a Menu Type', menut_labels)
+    return menut
+menut_input = get_city()
+menut_int = menut_mapping[menut_input]
+
+def get_truckb():
+    truckb = st.selectbox('Select a Truck Brand Name', truckb_labels)
+    return truckb
+truckb_input = get_city()
+truckb_int = truckb_mapping[truckb_input]
+
+def get_menuitem():
+    menuitem = st.selectbox('Select a Menu Item', menuitem_labels)
+    return menuitem
+menuitem_input = get_city()
+menuitem_int = menuitem_mapping[menuitem_input]
+
+if st.button('Predict Price'):
+    input_data = [[LOCATION_ID,SHIFT_NUMBER,AVG_TEMPERATURE_AIR_2M_F,AVG_TEMPERATURE_WETBULB_2M_F,
+                   AVG_TEMPERATURE_DEWPOINT_2M_F,AVG_TEMPERATURE_WINDCHILL_2M_F,
+                   AVG_WIND_SPEED_100M_MPH,COG_PER_ITEM_USD,ITEM_PRICE,VALUE,
+                   SUBCATEGORY,menuitem_int,truckb_int,menut_int,itemcat_int,
+                   city_int,season_int]]
