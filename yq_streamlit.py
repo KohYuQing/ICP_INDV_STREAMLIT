@@ -8,6 +8,7 @@ import pickle
 from sklearn import preprocessing
 import requests
 import zipfile
+from sklearn.ensemble import RandomForestRegressor
 import io
 
 st.set_page_config(page_title='Singapore Airbnb Price Predictor', page_icon=':money_with_wings:')
