@@ -63,18 +63,18 @@ df = pd.read_csv('final_data_noscaler.csv')
 total_sales = df[['TOTAL_SALES_PER_ITEM']]
 
 
-LOCATION_ID = df['LOCATION_ID']
-SHIFT_NUMBER= df['SHIFT_NUMBER']
-AVG_TEMPERATURE_AIR_2M_F = df['AVG_TEMPERATURE_AIR_2M_F']
-AVG_TEMPERATURE_WETBULB_2M_F = df['AVG_TEMPERATURE_WETBULB_2M_F']
-AVG_TEMPERATURE_DEWPOINT_2M_F= df['AVG_TEMPERATURE_DEWPOINT_2M_F']
-AVG_TEMPERATURE_WINDCHILL_2M_F = df['AVG_TEMPERATURE_WINDCHILL_2M_F']
-AVG_WIND_SPEED_100M_MPH  = df['AVG_WIND_SPEED_100M_MPH']
-COG_PER_ITEM_USD =df['COG_PER_ITEM_USD']
-ITEM_PRICE = df['ITEM_PRICE']
-VALUE = df['VALUE']
-SUBCATEGORY = df['SUBCATEGORY']  
-discount = df['discount_10%']              
+LOCATION_ID = df['LOCATION_ID'].astype(int)
+SHIFT_NUMBER= df['SHIFT_NUMBER'].astype(int)
+AVG_TEMPERATURE_AIR_2M_F = df['AVG_TEMPERATURE_AIR_2M_F'].astype(float)
+AVG_TEMPERATURE_WETBULB_2M_F = df['AVG_TEMPERATURE_WETBULB_2M_F'].astype(float)
+AVG_TEMPERATURE_DEWPOINT_2M_F= df['AVG_TEMPERATURE_DEWPOINT_2M_F'].astype(float)
+AVG_TEMPERATURE_WINDCHILL_2M_F = df['AVG_TEMPERATURE_WINDCHILL_2M_F'].astype(float)
+AVG_WIND_SPEED_100M_MPH  = df['AVG_WIND_SPEED_100M_MPH'].astype(float)
+COG_PER_ITEM_USD =df['COG_PER_ITEM_USD'].astype(float)
+ITEM_PRICE = df['ITEM_PRICE'].astype(float)
+VALUE = df['VALUE'].astype(int)
+SUBCATEGORY = df['SUBCATEGORY'].astype(int)
+discount = df['discount_10%'].astype(float)              
 # Define the user input functions 
 
 season_mapping = {'WINTER': 0, 'SPRING': 1, 'SUMMER': 2, 'AUTUMN': 3}
