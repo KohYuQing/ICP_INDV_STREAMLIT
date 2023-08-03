@@ -74,7 +74,7 @@ COG_PER_ITEM_USD =df['COG_PER_ITEM_USD']
 ITEM_PRICE = df['ITEM_PRICE']
 VALUE = df['VALUE']
 SUBCATEGORY = df['SUBCATEGORY']  
-discount = df['discount10%']              
+discount = df['discount_10%']              
 # Define the user input functions 
 
 season_mapping = {'WINTER': 0, 'SPRING': 1, 'SUMMER': 2, 'AUTUMN': 3}
