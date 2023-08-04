@@ -137,6 +137,8 @@ def get_truckb():
 truckb_input = get_truckb()
 truckb_int = truckb_mapping[truckb_input]
 
+
+
 # def get_menuitem():
 #     menuitem = st.selectbox('Select a Menu Item', menuitem_labels)
 #     return menuitem
