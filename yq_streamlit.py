@@ -142,7 +142,7 @@ filtered_df = pd.DataFrame(columns=df.columns)
 
 for index, row in df.iterrows():
     if (row['TRUCK_BRAND_NAME'] == truckb_labels) & (row['SEASON'] == season_labels):
-        filtered_df.loc[index] = row 
+        filtered_df = filtered_df.append(row, ignore_index=True)
 
 if st.button('Generate Records'):
     st.write(filtered_df)
