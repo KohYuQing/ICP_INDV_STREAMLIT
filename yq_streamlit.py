@@ -142,11 +142,11 @@ season_int = season_mapping[season_input]
 
 filtered_df = pd.DataFrame(columns=df.columns)
 
-# for index, row in df.iterrows():
-#     if (row['TRUCK_BRAND_NAME'] in truckb_values) & (row['SEASON'] in season_values):
-#         filtered_df = filtered_df.append(row, ignore_index=True)
+for index, row in df.iterrows():
+    if (row['TRUCK_BRAND_NAME'] in truckb_values) & (row['SEASON'] in season_values):
+        filtered_df = filtered_df.append(row, ignore_index=True)
 
-filtered_df = df[(df['TRUCK_BRAND_NAME'].isin(truckb_labels)) & (df['SEASON'] == season_labels)].copy()
+
 
 if st.button('Generate Records'):
     st.write(filtered_df)
