@@ -140,16 +140,16 @@ def get_season():
 season_input = get_season()
 season_int = season_mapping[season_input]
 
-filtered_df = pd.DataFrame(columns=df.columns)
 
+filtered_rows = []
 for index, row in df.iterrows():
     if (row['TRUCK_BRAND_NAME'] in truckb_values) & (row['SEASON'] in season_values):
-        filtered_df.append(row, ignore_index=True)
+        filtered_rows.append(row.to_dict())
 
 
-
+filtered_rows = pd.DataFrame(columns=df.columns)
 if st.button('Generate Records'):
-    st.write(filtered_df)
+    st.write(filtered_rows)
 
 
 
