@@ -141,7 +141,7 @@ season_int = season_mapping[season_input]
 filtered_df = pd.DataFrame(columns=df.columns)
 
 for index, row in df.iterrows():
-    if row['TRUCK_BRAND_NAME'] == truckb_labels and row['SEASON'] == season_labels:
+    if row['TRUCK_BRAND_NAME'] == truckb_labels & row['SEASON'] == season_labels:
         filtered_df.loc[index] = row 
 
 if st.button('Generate Records'):
