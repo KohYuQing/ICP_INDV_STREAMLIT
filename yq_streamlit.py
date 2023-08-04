@@ -143,7 +143,7 @@ season_int = season_mapping[season_input]
 filtered_df = pd.DataFrame(columns=df.columns)
 
 for index, row in df.iterrows():
-    if (row['TRUCK_BRAND_NAME'] in truckb_values) & (row['SEASON'] in season_values):
+    if (row['TRUCK_BRAND_NAME'] in truckb_labels) & (row['SEASON'] in season_labels):
         filtered_df = filtered_df.append(row, ignore_index=True)
 
 
