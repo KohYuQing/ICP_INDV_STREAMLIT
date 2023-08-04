@@ -80,6 +80,7 @@ discount = df['discount_10%']
 season_mapping = {'WINTER': 0, 'SPRING': 1, 'SUMMER': 2, 'AUTUMN': 3}
 season_reverse_mapping = {v: k for k, v in season_mapping.items()}
 season_labels = list(season_mapping.keys())
+season_values = list(season_mapping.values())
 
 city_mapping = {'San Mateo': 0, 'Denver': 1, 'Seattle': 2, 'New York City': 3, 'Boston': 4}
 city_reverse_mapping = {v: k for k, v in city_mapping.items()}
@@ -96,6 +97,7 @@ menut_labels = list(menut_mapping.keys())
 truckb_mapping = {'Freezing Point': 0, 'The Mega Melt': 1, 'Smoky BBQ': 2, "Guac n' Roll": 3, 'Peking Truck': 4, 'Revenge of the Curds': 5, 'Not the Wurst Hot Dogs': 6, 'Plant Palace': 7, 'Le Coin des Crêpes': 8, 'Better Off Bread': 9, 'Kitakata Ramen Bar': 10, 'Tasty Tibs': 11, 'Cheeky Greek': 12, "Nani's Kitchen": 13, 'The Mac Shack': 14}
 truckb_reverse_mapping = {v: k for k, v in truckb_mapping.items()}
 truckb_labels = list(truckb_mapping.keys())
+truckb_values = list(truckb_mapping.values())
 
 menuitem_mapping = {'Mango Sticky Rice': 0, 'Popsicle': 1, 'Waffle Cone': 2, 'Sugar Cone': 3, 'Two Scoop Bowl': 4, 'Lemonade': 5, 'Bottled Water': 6, 'Ice Tea': 7, 'Bottled Soda': 8, 'Ice Cream Sandwich': 9, 'The Ranch': 10, 'Miss Piggie': 11, 
                     'The Original': 12, 'Three Meat Plate': 13, 'Fried Pickles': 14, 'Two Meat Plate': 15, 'Spring Mix Salad': 16, 'Rack of Pork Ribs': 17, 'Pulled Pork Sandwich': 18, 'Fish Burrito': 19, 'Veggie Taco Bowl': 20, 'Chicken Burrito': 21, 'Three Taco Combo Plate': 22,
@@ -141,7 +143,7 @@ season_int = season_mapping[season_input]
 filtered_df = pd.DataFrame(columns=df.columns)
 
 for index, row in df.iterrows():
-    if (row['TRUCK_BRAND_NAME'] in truckb_labels) & (row['SEASON'] in season_labels):
+    if (row['TRUCK_BRAND_NAME'] in truckb_values) & (row['SEASON'] in season_values):
         filtered_df = filtered_df.append(row, ignore_index=True)
 
 if st.button('Generate Records'):
