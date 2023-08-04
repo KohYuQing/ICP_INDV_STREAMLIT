@@ -107,11 +107,6 @@ menuitem_reverse_mapping = {v: k for k, v in menuitem_mapping.items()}
 menuitem_labels = list(menuitem_mapping.keys())
 
 
-# def get_season():
-#     season = st.selectbox('Select a season', season_labels)
-#     return season
-# season_input = get_season()
-# season_int = season_mapping[season_input]
 
 # def get_city():
 #     city = st.selectbox('Select a city', city_labels)
@@ -136,6 +131,12 @@ def get_truckb():
     return truckb
 truckb_input = get_truckb()
 truckb_int = truckb_mapping[truckb_input]
+
+def get_season():
+    season = st.selectbox('Select a season', season_labels)
+    return season
+season_input = get_season()
+season_int = season_mapping[season_input]
 
 
 
