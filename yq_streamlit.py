@@ -106,29 +106,30 @@ menuitem_mapping = {'Mango Sticky Rice': 0, 'Popsicle': 1, 'Waffle Cone': 2, 'Su
 menuitem_reverse_mapping = {v: k for k, v in menuitem_mapping.items()}
 menuitem_labels = list(menuitem_mapping.keys())
 
-def get_season():
-    season = st.selectbox('Select a season', season_labels)
-    return season
-season_input = get_season()
-season_int = season_mapping[season_input]
 
-def get_city():
-    city = st.selectbox('Select a city', city_labels)
-    return city
-city_input = get_city()
-city_int = city_mapping[city_input]
+# def get_season():
+#     season = st.selectbox('Select a season', season_labels)
+#     return season
+# season_input = get_season()
+# season_int = season_mapping[season_input]
 
-def get_itemcat():
-    itemcat = st.selectbox('Select a Item Category', itemcat_labels)
-    return itemcat
-itemcat_input = get_itemcat()
-itemcat_int = itemcat_mapping[itemcat_input]
+# def get_city():
+#     city = st.selectbox('Select a city', city_labels)
+#     return city
+# city_input = get_city()
+# city_int = city_mapping[city_input]
 
-def get_menut():
-    menut = st.selectbox('Select a Menu Type', menut_labels)
-    return menut
-menut_input = get_menut()
-menut_int = menut_mapping[menut_input]
+# def get_itemcat():
+#     itemcat = st.selectbox('Select a Item Category', itemcat_labels)
+#     return itemcat
+# itemcat_input = get_itemcat()
+# itemcat_int = itemcat_mapping[itemcat_input]
+
+# def get_menut():
+#     menut = st.selectbox('Select a Menu Type', menut_labels)
+#     return menut
+# menut_input = get_menut()
+# menut_int = menut_mapping[menut_input]
 
 def get_truckb():
     truckb = st.selectbox('Select a Truck Brand Name', truckb_labels)
@@ -136,17 +137,17 @@ def get_truckb():
 truckb_input = get_truckb()
 truckb_int = truckb_mapping[truckb_input]
 
-def get_menuitem():
-    menuitem = st.selectbox('Select a Menu Item', menuitem_labels)
-    return menuitem
-menuitem_input = get_menuitem()
-menuitem_int = menuitem_mapping[menuitem_input]
+# def get_menuitem():
+#     menuitem = st.selectbox('Select a Menu Item', menuitem_labels)
+#     return menuitem
+# menuitem_input = get_menuitem()
+# menuitem_int = menuitem_mapping[menuitem_input]
 
-if st.button('Predict Price'):
-    input_data = [[menuitem_int,truckb_int,menut_int,itemcat_int,
-                   city_int,season_int]]
+# if st.button('Predict Price'):
+#     input_data = [[menuitem_int,truckb_int,menut_int,itemcat_int,
+#                    city_int,season_int]]
     
-    input_df = pd.DataFrame(input_data, columns=['MENU_ITEM_NAME',
-                                                 'TRUCK_BRAND_NAME','MENU_TYPE','ITEM_CATEGORY','CITY','SEASON'])
-    prediction = xgbr_gs.predict(input_df)
+#     input_df = pd.DataFrame(input_data, columns=['MENU_ITEM_NAME',
+#                                                  'TRUCK_BRAND_NAME','MENU_TYPE','ITEM_CATEGORY','CITY','SEASON'])
+#     prediction = xgbr_gs.predict(input_df)
 
