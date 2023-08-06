@@ -328,11 +328,11 @@ with tab3:
     for index, row in maintable.iterrows():
         if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
             filtered_rows.append(row)
-
-
+    
     filtered_df = pd.DataFrame(filtered_rows, columns=df.columns)
+    bundle_df = filtered_df[filtered_df != 0]
     if st.button('Generate Records'):
-        st.write(filtered_df)
+        st.write(bundle_df)
 
   #Tab 3 code here
 
