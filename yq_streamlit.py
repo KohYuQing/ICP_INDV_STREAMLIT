@@ -256,6 +256,7 @@ with tab3:
     city_mapping = {'San Mateo': 0, 'Denver': 1, 'Seattle': 2, 'New York City': 3, 'Boston': 4}
     city_reverse_mapping = {v: k for k, v in city_mapping.items()}
     city_labels = list(city_mapping.keys())
+    city_values = list(city_mapping.values())
 
     itemcat_mapping = {'Dessert': 0, 'Beverage': 1, 'Main': 2, 'Snack': 3}
     itemcat_reverse_mapping = {v: k for k, v in itemcat_mapping.items()}
@@ -298,6 +299,11 @@ with tab3:
     #     return menut
     # menut_input = get_menut()
     # menut_int = menut_mapping[menut_input]
+    def get_CITY():
+        city = st.selectbox('Select a City', city_labels)
+        return city
+    city_input = get_CITY()
+    city_int = city_mapping[city_input]
 
     def get_truckb():
         truckb = st.selectbox('Select a Truck Brand Name', truckb_labels)
@@ -312,9 +318,10 @@ with tab3:
     season_int = season_mapping[season_input]
 
 
+
     filtered_rows = []
     for index, row in df.iterrows():
-        if (row['TRUCK_BRAND_NAME'] in truckb_values) & (row['SEASON'] in season_values):
+        if (row['TRUCK_BRAND_NAME'] in truckb_values) & (row['SEASON'] in season_values)& (row['CITY'] in city_values):
             filtered_rows.append(row)
 
 
