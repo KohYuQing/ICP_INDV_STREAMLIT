@@ -332,6 +332,7 @@ with tab3:
     
     filtered_df = pd.DataFrame(filtered_rows, columns=df.columns)
     bundle_df = filtered_df[filtered_df != 0]
+    bundle_df = pd.DataFrame(bundle_df)
     if st.button('Generate Records'):
         st.write(bundle_df)
 
