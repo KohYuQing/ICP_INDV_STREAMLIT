@@ -321,7 +321,7 @@ with tab3:
 
     filtered_rows = []
     for index, row in maintable.iterrows():
-        if (row['TRUCK_BRAND_NAME'] in truckb_labels) & (row['SEASON'] in season_labels)& (row['CITY'] in city_values):
+        if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
             filtered_rows.append(row)
 
 
