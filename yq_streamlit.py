@@ -318,9 +318,9 @@ with tab3:
             filtered_rows.append(row)
 
 
-    filtered_rows = pd.DataFrame(columns=df.columns)
+    filtered_df = pd.DataFrame(filtered_rows, columns=df.columns)
     if st.button('Generate Records'):
-        st.write(filtered_rows)
+        st.write(filtered_df)
 
   #Tab 3 code here
 
