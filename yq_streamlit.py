@@ -217,7 +217,7 @@ with tab3:
     def main():
 
         # Replace the 'github_url' variable with the actual URL of the zipped CSV file on GitHub
-        github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/snowflake_data.zip"
+        github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/final_data.zip"
         df = read_csv_from_zipped_github(github_url)
 
 
@@ -321,11 +321,11 @@ with tab3:
 
     filtered_rows = []
     for index, row in maintable.iterrows():
-        if (truckb_input in truckb_labels) & (season_input in season_labels)& (city_input in city_labels):
+        if (row['TRUCK_BRAND_NAME'] in truckb_labels) & (row['SEASON'] in season_labels)& (row['CITY'] in city_values):
             filtered_rows.append(row)
 
 
-    filtered_df = pd.DataFrame(filtered_rows, columns=maintable.columns)
+    filtered_df = pd.DataFrame(filtered_rows, columns=df.columns)
     if st.button('Generate Records'):
         st.write(filtered_df)
 
