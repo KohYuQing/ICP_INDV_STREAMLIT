@@ -321,11 +321,11 @@ with tab3:
 
     filtered_rows = []
     for index, row in maintable.iterrows():
-        if (row['TRUCK_BRAND_NAME'] in truckb_labels) & (row['SEASON'] in season_labels)& (row['CITY'] in city_labels):
+        if (truckb_input in truckb_labels) & (season_input in season_labels)& (city_input in city_labels):
             filtered_rows.append(row)
 
 
-    filtered_df = pd.DataFrame(filtered_rows, columns=df.columns)
+    filtered_df = pd.DataFrame(filtered_rows, columns=maintable.columns)
     if st.button('Generate Records'):
         st.write(filtered_df)
 
