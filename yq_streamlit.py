@@ -215,7 +215,6 @@ with tab3:
             return None
 
     def main():
-        st.title("Read CSV from Zipped File on GitHub")
 
         # Replace the 'github_url' variable with the actual URL of the zipped CSV file on GitHub
         github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/snowflake_data.zip"
@@ -320,8 +319,8 @@ with tab3:
 
 
     filtered_rows = []
-    for index, row in df.iterrows():
-        if (row['TRUCK_BRAND_NAME'] in truckb_values) & (row['SEASON'] in season_values)& (row['CITY'] in city_values):
+    for index, row in maintable.iterrows():
+        if (row['TRUCK_BRAND_NAME'] in truckb_labels) & (row['SEASON'] in season_labels)& (row['CITY'] in city_labels):
             filtered_rows.append(row)
 
 
