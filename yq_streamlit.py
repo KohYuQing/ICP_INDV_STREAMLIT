@@ -233,6 +233,11 @@ with tab3:
     df = pd.read_csv('final_data_noscaler.csv')
     total_sales = df[['TOTAL_SALES_PER_ITEM']]
 
+    icmain_df = maintable[maintable['ITEM_CATEGORY'] == 'Main']
+
+        
+    
+
 
     LOCATION_ID = df['LOCATION_ID']
     SHIFT_NUMBER= df['SHIFT_NUMBER']
@@ -266,7 +271,7 @@ with tab3:
     menut_reverse_mapping = {v: k for k, v in menut_mapping.items()}
     menut_labels = list(menut_mapping.keys())
 
-    truckb_mapping = {'Freezing Point': 0, 'The Mega Melt': 1, 'Smoky BBQ': 2, "Guac n' Roll": 3, 'Peking Truck': 4, 'Revenge of the Curds': 5, 'Not the Wurst Hot Dogs': 6, 'Plant Palace': 7, 'Le Coin des Crêpes': 8, 'Better Off Bread': 9, 'Kitakata Ramen Bar': 10, 'Tasty Tibs': 11, 'Cheeky Greek': 12, "Nani's Kitchen": 13, 'The Mac Shack': 14}
+    truckb_mapping = {'The Mega Melt': 1, 'Smoky BBQ': 2, "Guac n' Roll": 3, 'Peking Truck': 4, 'Revenge of the Curds': 5, 'Not the Wurst Hot Dogs': 6, 'Plant Palace': 7, 'Le Coin des Crêpes': 8, 'Better Off Bread': 9, 'Kitakata Ramen Bar': 10, 'Tasty Tibs': 11, 'Cheeky Greek': 12, "Nani's Kitchen": 13, 'The Mac Shack': 14}
     truckb_reverse_mapping = {v: k for k, v in truckb_mapping.items()}
     truckb_labels = list(truckb_mapping.keys())
     truckb_values = list(truckb_mapping.values())
