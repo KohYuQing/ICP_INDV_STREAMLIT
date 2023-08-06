@@ -222,7 +222,7 @@ with tab3:
 
 
     data = load_data()
-    github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/snowflake_data.zip"
+    github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/final_data.zip"
     maintable = read_csv_from_zipped_github(github_url)
 
     with open('xgbr_gs.pkl', 'rb') as file:
