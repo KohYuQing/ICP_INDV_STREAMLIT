@@ -286,24 +286,6 @@ with tab3:
     menuitem_labels = list(menuitem_mapping.keys())
 
 
-
-    # def get_city():
-    #     city = st.selectbox('Select a city', city_labels)
-    #     return city
-    # city_input = get_city()
-    # city_int = city_mapping[city_input]
-
-    # def get_itemcat():
-    #     itemcat = st.selectbox('Select a Item Category', itemcat_labels)
-    #     return itemcat
-    # itemcat_input = get_itemcat()
-    # itemcat_int = itemcat_mapping[itemcat_input]
-
-    # def get_menut():
-    #     menut = st.selectbox('Select a Menu Type', menut_labels)
-    #     return menut
-    # menut_input = get_menut()
-    # menut_int = menut_mapping[menut_input]
     def get_CITY():
         city = st.selectbox('Select a City', city_labels)
         return city
@@ -335,6 +317,18 @@ with tab3:
     bundle_df = pd.DataFrame(bundle_df)
     if st.button('Generate Records'):
         st.write(bundle_df)
+
+    ## map values to put in dataframe
+    bundle_df['SEASON'] = bundle_df['SEASON'].map(season_mapping)
+    bundle_df['CITY'] = bundle_df['CITY'].map(city_mapping)
+    bundle_df['ITEM_CATEGORY'] = bundle_df['ITEM_CATEGORY'].map(itemcat_mapping)
+    bundle_df['MENU_TYPE'] = bundle_df['MENU_TYPE'].map(menut_mapping)
+    bundle_df['TRUCK_BRAND_NAME'] = bundle_df['TRUCK_BRAND_NAME'].map(truckb_mapping)
+    bundle_df['MENU_ITEM_NAME'] = bundle_df['MENU_ITEM_NAME'].map(menuitem_mapping)
+    if st.button('RANDOM'):
+        st.write(bundle_df)
+    
+
 
   #Tab 3 code here
 
