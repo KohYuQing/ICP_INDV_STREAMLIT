@@ -189,20 +189,20 @@ with tab3:
         output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
 
         
-        output_data['DATE'] = pd.to_datetime(output_data['DATE'])
+        # output_data['DATE'] = pd.to_datetime(output_data['DATE'])
 
-        output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
-        bundle2021_df['DATE_MONTH'] = bundle2021_df['DATE'].dt.strftime('%m-%d')
-        matching_dates = bundle2021_df['DATE_MONTH'].unique()
-        filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
-        filtered_output.reset_index(drop=True, inplace=True)
+        # output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
+        # bundle2021_df['DATE_MONTH'] = bundle2021_df['DATE'].dt.strftime('%m-%d')
+        # matching_dates = bundle2021_df['DATE_MONTH'].unique()
+        # filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
+        # filtered_output.reset_index(drop=True, inplace=True)
 
         # st.write(filtered_output)
         st.write(bundle2021_df)
         st.write(output_data)
-        st.write(filtered_output)
+        # st.write(filtered_output)
         column_sum_2021 = bundle2021_df['TOTAL_SALES'].sum()
-        column_sum_2022 = filtered_output['TOTAL_SALES'].sum()
+        column_sum_2022 = output_data['TOTAL_SALES'].sum()
 
 
         # Display the sum
