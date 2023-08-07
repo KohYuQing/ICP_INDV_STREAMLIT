@@ -257,10 +257,9 @@ with tab3:
         final_df = output_data[output_data['DATE'].isin(unique_dates)]
         final_df = final_df.drop(columns=['discount_10%','DATE_MONTH'])
         filter2021 = filter2021.drop(columns=['discount_10%','DATE_MONTH','TRUCK_ID'])
-        filter2021.rename(columns={'TOTAL_SALES_PER_ITEM': 'PREDICTED_PRICE'}, inplace=True)
-        sorted_columns = sorted(final_df.columns)
-        filter2021 = filter2021[sorted_columns]
-        filter2021.rename(columns={'PREDICTED_PRICE': 'TOTAL_SALES_PER_ITEM'}, inplace=True)
+        # filter2021.rename(columns={'TOTAL_SALES_PER_ITEM': 'PREDICTED_PRICE'}, inplace=True)
+        filter2021 = filter2021.reindex(columns=final_df.columns, fill_value=None)
+        # filter2021.rename(columns={'PREDICTED_PRICE': 'TOTAL_SALES_PER_ITEM'}, inplace=True)
 
 
 
