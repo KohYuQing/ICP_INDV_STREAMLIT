@@ -123,17 +123,23 @@ with tab3:
     city_input = get_CITY()
     city_int = city_mapping[city_input]
 
+
+
     def get_truckb():
         truckb = st.selectbox('Select a Truck Brand Name', truckb_labels)
         return truckb
     truckb_input = get_truckb()
     truckb_int = truckb_mapping[truckb_input]
 
-    def get_month():
-        month_chosen = st.selectbox('Select Month', month_labels)
-        return month_chosen
-    month_input = get_month()
-    month_int = month_mapping[month_input]
+    
+
+
+
+
+    
+
+
+    
     
     
 
@@ -143,10 +149,31 @@ with tab3:
             filtered_rows.append(row)
 
     
+
+    
     filtered_df = pd.DataFrame(filtered_rows, columns= maintable.columns)
+    filtered_df_another = pd.DataFrame(filtered_rows, columns= maintable.columns)
+    # find unique months if month number not in dictionary then drop that value 
+    filtered_df_another['DATE'] = pd.to_datetime(filtered_df['DATE'])
+    filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE'].dt.strftime('%m')
+    filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE_MONTH'].astype(str)
+    filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE_MONTH'].map(value_mapping)
+    filtered_df_list = filtered_df_another['DATE'].unique().tolist()
+    month_mapping = {
+    month: value for month, value in month_mapping.items() if value in filtered_df_list}
+    month_reverse_mapping = {v: k for k, v in month_mapping.items()}
+    month_labels = list(month_mapping.keys())
+    month_values = list(month_mapping.values())
     bundle_df = filtered_df[filtered_df['VALUE'] != 0]
     bundle_df = pd.DataFrame(bundle_df)
-    bundle_df.reset_index(drop=True, inplace=True)
+
+    def get_month():
+        month_chosen = st.selectbox('Select Month', month_labels)
+        return month_chosen
+    month_input = get_month()
+    month_int = month_mapping[month_input]
+
+    
 
     filterednot2022_rows = []
     filterednot2022_df = woy2022_df.loc[
