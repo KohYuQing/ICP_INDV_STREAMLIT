@@ -132,7 +132,7 @@ with tab3:
         if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
             filtered_rows.append(row)
     
-    filtered_df = pd.DataFrame(filtered_rows, columns=df.columns)
+    filtered_df = pd.DataFrame(filtered_rows, columns= maintable.columns)
     bundle_df = filtered_df[filtered_df['VALUE'] != 0]
     bundle_df = pd.DataFrame(bundle_df)
     bundle_df.reset_index(drop=True, inplace=True)
