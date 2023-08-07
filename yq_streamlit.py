@@ -221,6 +221,7 @@ with tab3:
         final = datevalue_df.loc[randomly_kept_rows]
         unique_value_list = final['VALUE'].unique().tolist()
         final_df = outputfilter_df[outputfilter_df['VALUE'].isin(unique_value_list)]
+        final_df = pd.DataFrame(final_df, columns = filterednot2022_df)
         
         
 
