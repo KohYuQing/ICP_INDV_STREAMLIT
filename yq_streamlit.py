@@ -161,6 +161,7 @@ with tab3:
     filterednot2022_df = filterednot2022_df[filterednot2022_df['VALUE'] != 0]
     filterednot2022_df= pd.DataFrame(filterednot2022_df)
     filterednot2022_df = filterednot2022_df[filterednot2022_df['DATE'].dt.year == 2021]
+    filterednot2022_df['TOTAL_SALES'] = filterednot2022_df['TOTAL_QTY_SOLD'] * filterednot2022_df['TOTAL_SALES_PER_ITEM']
     filterednot2022_df.reset_index(drop=True, inplace=True)
     
 
