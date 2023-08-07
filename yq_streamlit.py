@@ -168,6 +168,9 @@ with tab3:
         output_data['MENU_TYPE'] = output_data['MENU_TYPE'].replace({v: k for k, v in menut_mapping.items()})
         output_data['TRUCK_BRAND_NAME'] = output_data['TRUCK_BRAND_NAME'].replace({v: k for k, v in truckb_mapping.items()})
         output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
+        output_data['DATE'] = pd.to_datetime(output_data['DATE'])
+        output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m')
+        output_data['DATE_MONTH']= output_data['DATE_MONTH'].astype(int)
         st.write(output_data)
         
     # woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
