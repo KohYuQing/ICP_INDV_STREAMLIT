@@ -164,22 +164,18 @@ with tab3:
     filteredw2022_rows['DATE_MONTH'] = filteredw2022_rows['DATE_MONTH'].astype(str)
     filteredw2022_rows['DATE_MONTH'] = filteredw2022_rows['DATE_MONTH'].map(value_mapping)
     filteredw2022_df_list = filteredw2022_rows['DATE_MONTH'].unique().tolist()
-    filteredw2022_df_list
+
     # find unique months if month number not in dictionary then drop that value 
     filtered_df_another['DATE'] = pd.to_datetime(filtered_df['DATE'])
     filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE'].dt.strftime('%m')
     filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE_MONTH'].astype(str)
     filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE_MONTH'].map(value_mapping)
     filtered_df_list = filtered_df_another['DATE_MONTH'].unique().tolist()
-    filtered_df_list
 
     concat_list = [value for value in filtered_df_list if value in filteredw2022_df_list]
-    concat_list
     month_list = [1,2,3,4,5,6,7,8,9,10,11,12]
     new_list = [m for m in month_list if m not in concat_list]
-    new_list
     month_mapping = {key: value for key, value in month_mapping.items() if value not in new_list}
-    month_mapping
     month_reverse_mapping = {v: k for k, v in month_mapping.items()}
     month_labels = list(month_mapping.keys())
     month_values = list(month_mapping.values())
