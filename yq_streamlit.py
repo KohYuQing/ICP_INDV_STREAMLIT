@@ -203,15 +203,15 @@ with tab3:
 
         unique_count = filterednot2022_df['DATE'].nunique()
         unique_output_date_list = output_data['DATE'].unique().tolist()
-        grouped_data = output_data.groupby('DATE')['TOTAL_SALES'].sum()
+        grouped_data = output_data.groupby('DATE')['PREDICTED_PRICE'].sum()
         grouped_data = pd.DataFrame(grouped_data)
-        grouped_data = grouped_data.sort_values(by='TOTAL_SALES', ascending=False)
+        grouped_data = grouped_data.sort_values(by='PREDICTED_PRICE', ascending=False)
         date_list = []
         date_list = grouped_data.index.tolist()
         unique_dates = date_list[:unique_count]
         outputfilter_df = output_data[output_data['DATE'].isin(unique_dates)]
 
-        groupedby_datevalue = outputfilter_df.groupby(['DATE','VALUE'])['TOTAL_SALES'].sum()
+        groupedby_datevalue = outputfilter_df.groupby(['DATE','VALUE'])['PREDICTED_PRICE'].sum()
         datevalue_df = groupedby_datevalue.reset_index()
         unique_date_list = datevalue_df['DATE'].unique().tolist()
         randomly_kept_rows = []
