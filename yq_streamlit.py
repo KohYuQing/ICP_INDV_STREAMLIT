@@ -165,6 +165,7 @@ with tab3:
     filterednot2022_df['TOTAL_SALES'] = filterednot2022_df['TOTAL_QTY_SOLD'] * filterednot2022_df['TOTAL_SALES_PER_ITEM']
     filterednot2022_df.reset_index(drop=True, inplace=True)
     
+    
 
 
     qty_df = bundle_df['TOTAL_QTY_SOLD']
@@ -221,7 +222,7 @@ with tab3:
         final = datevalue_df.loc[randomly_kept_rows]
         unique_value_list = final['VALUE'].unique().tolist()
         final_df = outputfilter_df[outputfilter_df['VALUE'].isin(unique_value_list)]
-        final_df = pd.DataFrame(final_df, columns = filterednot2022_df.columns)
+        final_df = pd.DataFrame(final_df, columns = output_data.columns)
         
         
 
