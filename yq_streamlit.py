@@ -126,7 +126,7 @@ with tab3:
     truckb_int = truckb_mapping[truckb_input]
 
     def get_month():
-        month_chosen = st.selectbox('Select Month', month_chosen)
+        month_chosen = st.selectbox('Select Month', month_labels)
         return month_chosen
     month_input = get_month()
     month_int = month_mapping[month_input]
