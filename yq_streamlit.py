@@ -176,6 +176,10 @@ with tab3:
     month_list = [1,2,3,4,5,6,7,8,9,10,11,12]
     new_list = [m for m in month_list if m not in concat_list]
     month_mapping = {key: value for key, value in month_mapping.items() if value not in new_list}
+    if not month_mapping:
+        st.write('NO RECORDS! CHOOSE AGAIN')
+        
+
     month_reverse_mapping = {v: k for k, v in month_mapping.items()}
     month_labels = list(month_mapping.keys())
     month_values = list(month_mapping.values())
