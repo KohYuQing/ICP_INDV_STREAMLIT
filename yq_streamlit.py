@@ -244,6 +244,9 @@ with tab3:
         st.write(final_df)
         st.write(filterednot2022_df)
 
+        final_df['TOTAL_SALES'] = final_df['TOTAL_SALES'].astype(float)
+        filterednot2022_df['TOTAL_SALES'] = filterednot2022_df['TOTAL_SALES'].astype(float)
+
         column_sum_2021 = filterednot2022_df['TOTAL_SALES'].sum()
         column_sum_2022 = final_df['TOTAL_SALES'].sum()
         # Display the sum
