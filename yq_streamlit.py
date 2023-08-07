@@ -134,7 +134,7 @@ with tab3:
     month_input = get_month()
     month_int = month_mapping[month_input]
     
-    woy2022_df
+    
 
     filtered_rows = []
     for index, row in maintable.iterrows():
