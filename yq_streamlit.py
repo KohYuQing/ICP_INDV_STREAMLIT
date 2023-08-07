@@ -213,7 +213,7 @@ with tab3:
 
         groupedby_datevalue = output_data.groupby(['DATE','VALUE'])['TOTAL_SALES'].sum()
         datevalue_df = pd.DataFrame(groupedby_datevalue)
-        datevalue_df['DATE'] = pd.to_datetime(datevalue_df['DATE'])
+        # datevalue_df['DATE'] = pd.to_datetime(datevalue_df['DATE'])
         grouped_data = datevalue_df.groupby(datevalue_df['DATE'].dt.date).apply(lambda x: x.index.tolist())
         random_indexes = [random.choice(index_list) for index_list in grouped_data]
         filtered_data = output_data.drop(index=random_indexes)
