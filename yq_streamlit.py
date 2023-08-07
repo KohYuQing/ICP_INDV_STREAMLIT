@@ -146,6 +146,7 @@ with tab3:
     bundle_df.reset_index(drop=True, inplace=True)
 
     filterednot2022_rows = []
+    woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
     woy2022_df['DATE_MONTH'] = woy2022_df['DATE'].dt.strftime('%m')
     woy2022_df['DATE_MONTH'] = woy2022_df['DATE_MONTH'].astype(str)
     woy2022_df['DATE_MONTH'] = woy2022_df['DATE_MONTH'].map(value_mapping)
