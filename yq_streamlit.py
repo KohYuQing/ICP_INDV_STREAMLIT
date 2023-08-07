@@ -134,7 +134,7 @@ with tab3:
     month_input = get_month()
     month_int = month_mapping[month_input]
     
-    
+    woy2022_df
 
     filtered_rows = []
     for index, row in maintable.iterrows():
@@ -144,6 +144,22 @@ with tab3:
     bundle_df = filtered_df[filtered_df['VALUE'] != 0]
     bundle_df = pd.DataFrame(bundle_df)
     bundle_df.reset_index(drop=True, inplace=True)
+
+    filterednot2022_rows = []
+    woy2022_df['DATE_MONTH'] = woy2022_df['DATE'].dt.strftime('%m')
+    woy2022_df['DATE_MONTH'] = woy2022_df['DATE_MONTH'].astype(str)
+    woy2022_df['DATE_MONTH'] = woy2022_df['DATE_MONTH'].map(value_mapping)
+    woy2022_df['DATE_MONTH'] = woy2022_df['DATE_MONTH'].astype(object)
+    for index, row in woy2022_df.iterrows():
+        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY']) & (month_input in row['DATE_MONTH']):
+            filterednot2022_rows.append(row)
+    filterednot2022_df = pd.DataFrame(filterednot2022_rows, columns= woy2022_df.columns)
+    filterednot2022_df = filterednot2022_df[filterednot2022_df['VALUE'] != 0]
+    filterednot2022_df= pd.DataFrame(filterednot2022_df)
+    filterednot2022_df = filterednot2022_df[filterednot2022_df['DATE'].dt.year == 2021]
+    filterednot2022_df.reset_index(drop=True, inplace=True)
+    
+
 
     qty_df = bundle_df['TOTAL_QTY_SOLD']
     date_df = bundle_df['DATE']
@@ -177,7 +193,6 @@ with tab3:
         output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(str)
         output_data['DATE_MONTH'] = output_data['DATE_MONTH'].map(value_mapping)
         output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(object)
-
         output_data = output_data.loc[output_data['DATE_MONTH'] == month_int]
         
 
@@ -196,6 +211,7 @@ with tab3:
         
 
         st.write(output_data)
+        st.write(filterednot2022_df)
         
     # woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
     # woy2022_df['DATE_MONTH'] = woy2022_df['DATE'].dt.strftime('%m')
