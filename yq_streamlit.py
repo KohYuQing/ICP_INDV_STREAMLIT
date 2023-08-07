@@ -210,8 +210,10 @@ with tab3:
         unique_dates = date_list[:unique_count]
         outputfilter_df = output_data[output_data['DATE'].isin(unique_dates)]
 
-        grouped_data_final = output_data.groupby(['DATE','VALUE'])['TOTAL_SALES'].sum()
-        grouped_data_final
+        groupedby_datevalue = output_data.groupby(['VALUE'])['TOTAL_SALES'].sum()
+        datevalue_df = pd.DataFrame(groupedby_datevalue)
+
+        datevalue_df
 
         
 
