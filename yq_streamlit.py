@@ -137,23 +137,17 @@ with tab3:
     # season_input = get_season()
     # season_int = season_mapping[season_input]
     
-    maintable['DATE'] = pd.to_datetime(maintable['DATE'])
-    maintable['DATE_MONTH'] = maintable['DATE'].dt.strftime('%m')
-
-    woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
-    woy2022_df['DATE_MONTH'] = woy2022_df['DATE'].dt.strftime('%m')
-    st.write(maintable)
 
     filtered_rows = []
     for index, row in maintable.iterrows():
-        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY'])& (month_input in row['DATE_MONTH']):
+        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY']):
             filtered_rows.append(row)
         # if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
         #     filtered_rows.append(row)
-
+    woy2022_df['DATE_MONTH'] = woy2022_df['DATE'].dt.strftime('%m')
     woy2022_rows = []
     for index, row in woy2022_df.iterrows():
-        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY'])&(month_input in row['DATE_MONTH']):
+        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY']) & (month_input in row['DATE_MONTH']):
             woy2022_rows.append(row)
         # if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
         #     woy2022_rows.append(row)
@@ -170,10 +164,11 @@ with tab3:
     bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
     bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
     bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'].dt.year == 2021]
+    
 
     qty_df = bundle_df['TOTAL_QTY_SOLD']
     date_df = bundle_df['DATE']
-    bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE', 'DATE_MONTH'], axis = 1)
+    bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
     
 
     ## map values to put in dataframe
@@ -202,6 +197,18 @@ with tab3:
         output_data['MENU_TYPE'] = output_data['MENU_TYPE'].replace({v: k for k, v in menut_mapping.items()})
         output_data['TRUCK_BRAND_NAME'] = output_data['TRUCK_BRAND_NAME'].replace({v: k for k, v in truckb_mapping.items()})
         output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
+        output_data['DATE'] = pd.to_datetime(output_data['DATE'])
+        output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m')
+
+        filtered_month = []
+        for index, row in maintable.iterrows():
+            if (month_input in row['DATE_MONTH']) :
+                filtered_month.append(row)
+        filtered_month = pd.DataFrame(filtered_month, columns= output_data.columns)
+
+        
+        
+
 
         
         # output_data['DATE'] = pd.to_datetime(output_data['DATE'])
@@ -214,7 +221,7 @@ with tab3:
 
         # st.write(filtered_output)
         st.write(bundle2021_df)
-        st.write(output_data)
+        st.write(filtered_month)
         # st.write(filtered_output)
         column_sum_2021 = bundle2021_df['TOTAL_SALES'].sum()
         column_sum_2022 = output_data['TOTAL_SALES'].sum()
