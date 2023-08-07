@@ -178,9 +178,8 @@ with tab3:
     month_mapping = {key: value for key, value in month_mapping.items() if value not in new_list}
     if not month_mapping:
         st.write('NO RECORDS! CHOOSE AGAIN')
-        
-
-    month_reverse_mapping = {v: k for k, v in month_mapping.items()}
+    else:
+        month_reverse_mapping = {v: k for k, v in month_mapping.items()}
     month_labels = list(month_mapping.keys())
     month_values = list(month_mapping.values())
     bundle_df = filtered_df[filtered_df['VALUE'] != 0]
@@ -284,6 +283,9 @@ with tab3:
 
         st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
         st.write('The predicted price for 2022 ${:.2f}.'.format(column_sum_2022))
+        
+
+    
     
 
 
