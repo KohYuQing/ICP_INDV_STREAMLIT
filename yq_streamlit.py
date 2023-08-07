@@ -216,11 +216,11 @@ with tab3:
         datevalue_df
         unique_date_list = datevalue_df['DATE'].unique().tolist()
         randomly_kept_rows = []
-        for group in datevalue_df.groupby('DATE'):
+        for date, group in datevalue_df.groupby('DATE'):
             random_index = random.choice(group.index)
             randomly_kept_rows.append(random_index)
         final = datevalue_df.loc[randomly_kept_rows]
-        
+        final
 
         datevalue_df
 
