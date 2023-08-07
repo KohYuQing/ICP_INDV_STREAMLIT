@@ -150,7 +150,7 @@ with tab3:
     bundlewo2022_df.reset_index(drop=True, inplace=True)
     bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
     bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
-    bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'] == 2021]
+    bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'].dt.year == 2021]
 
     qty_df = bundle_df['TOTAL_QTY_SOLD']
     date_df = bundle_df['DATE']
@@ -193,7 +193,7 @@ with tab3:
         # filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
 
         # st.write(filtered_output)
-        st.write(bundlewo2022_df)
+        st.write(bundle2021_df)
         st.write(output_data)
 
     # bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
