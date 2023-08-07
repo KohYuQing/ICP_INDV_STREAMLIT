@@ -172,15 +172,14 @@ with tab3:
         output_data = pd.concat([qty_df, output_data], axis=1)
         output_data['PREDICTED_PRICE'] = prediction 
         output_data['TOTAL_SALES'] = output_data['PREDICTED_PRICE'] * output_data['TOTAL_QTY_SOLD']
-        output_data['SEASON'] = output_data['SEASON'].map(season_mapping)
-        output_data['CITY'] = output_data['CITY'].map(city_mapping)
-        output_data['ITEM_CATEGORY'] = output_data['ITEM_CATEGORY'].map(itemcat_mapping)
-        output_data['MENU_TYPE'] = output_data['MENU_TYPE'].map(menut_mapping)
-        output_data['TRUCK_BRAND_NAME'] = output_data['TRUCK_BRAND_NAME'].map(truckb_mapping)
-        output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].map(menuitem_mapping)
+        output_data['SEASON'] = output_data['SEASON'].replace({v: k for k, v in season_mapping.items()})
+        output_data['CITY'] = output_data['CITY'].replace({v: k for k, v in city_mapping.items()})
+        output_data['ITEM_CATEGORY'] = output_data['ITEM_CATEGORY'].replace({v: k for k, v in itemcat_mapping.items()})
+        output_data['MENU_TYPE'] = output_data['MENU_TYPE'].replace({v: k for k, v in menut_mapping.items()})
+        output_data['TRUCK_BRAND_NAME'] = output_data['TRUCK_BRAND_NAME'].replace({v: k for k, v in truckb_mapping.items()})
+        output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
 
     
-        
         st.write(output_data)
 
     bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
