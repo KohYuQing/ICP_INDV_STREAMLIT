@@ -193,7 +193,7 @@ with tab3:
         # filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
 
         # st.write(filtered_output)
-        st.write(bundle2021_df)
+        st.write(bundlewo2022_df)
         st.write(output_data)
 
     # bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
