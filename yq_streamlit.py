@@ -191,6 +191,7 @@ with tab3:
         bundle2021_df['DATE_MONTH'] = bundle2021_df['DATE'].dt.strftime('%m-%d')
         matching_dates = bundle2021_df['DATE_MONTH'].unique()
         filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
+        filtered_output.reset_index(drop=True, inplace=True)
 
         # st.write(filtered_output)
         st.write(bundle2021_df)
