@@ -180,109 +180,109 @@ with tab3:
         st.write('NO RECORDS! CHOOSE AGAIN')
     else:
         month_reverse_mapping = {v: k for k, v in month_mapping.items()}
-    month_labels = list(month_mapping.keys())
-    month_values = list(month_mapping.values())
-    bundle_df = filtered_df[filtered_df['VALUE'] != 0]
-    bundle_df = pd.DataFrame(bundle_df)
+        month_labels = list(month_mapping.keys())
+        month_values = list(month_mapping.values())
+        bundle_df = filtered_df[filtered_df['VALUE'] != 0]
+        bundle_df = pd.DataFrame(bundle_df)
 
-    def get_month():
-        month_chosen = st.selectbox('Select Month', month_labels)
-        return month_chosen
-    month_input = get_month()
-    month_int = month_mapping[month_input]
+        def get_month():
+            month_chosen = st.selectbox('Select Month', month_labels)
+            return month_chosen
+        month_input = get_month()
+        month_int = month_mapping[month_input]
 
-    
+        
 
-    filterednot2022_rows = []
-    filterednot2022_df = woy2022_df.loc[
-    (woy2022_df['TRUCK_BRAND_NAME'] == truckb_input) &
-    (woy2022_df['CITY'] == city_input)]
-    filterednot2022_df['DATE'] = pd.to_datetime(filterednot2022_df['DATE'])
-    filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE'].dt.strftime('%m')
-    filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE_MONTH'].astype(str)
-    filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE_MONTH'].map(value_mapping)
-    filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE_MONTH'].astype(object)
-    filterednot2022_df = filterednot2022_df.loc[filterednot2022_df['DATE_MONTH'] == month_int]
+        filterednot2022_rows = []
+        filterednot2022_df = woy2022_df.loc[
+        (woy2022_df['TRUCK_BRAND_NAME'] == truckb_input) &
+        (woy2022_df['CITY'] == city_input)]
+        filterednot2022_df['DATE'] = pd.to_datetime(filterednot2022_df['DATE'])
+        filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE'].dt.strftime('%m')
+        filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE_MONTH'].astype(str)
+        filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE_MONTH'].map(value_mapping)
+        filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE_MONTH'].astype(object)
+        filterednot2022_df = filterednot2022_df.loc[filterednot2022_df['DATE_MONTH'] == month_int]
 
-    filterednot2022_df = filterednot2022_df[filterednot2022_df['VALUE'] != 0]
-    filterednot2022_df= pd.DataFrame(filterednot2022_df)
-    filterednot2022_df = filterednot2022_df[filterednot2022_df['DATE'].dt.year == 2021]
-    filter2021 = filterednot2022_df
-    filter2021.index = range(len(filter2021))
-    # filterednot2022_df['TOTAL_SALES'] = filterednot2022_df['TOTAL_QTY_SOLD'] * filterednot2022_df['TOTAL_SALES_PER_ITEM']
-    # filterednot2022_df.reset_index(drop=True, inplace=True)
-
-    
-    
-
-
-    qty_df = bundle_df['TOTAL_QTY_SOLD']
-    date_df = bundle_df['DATE']
-    bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
-    ## map values to put in dataframe
-    bundle_df['SEASON'] = bundle_df['SEASON'].map(season_mapping)
-    bundle_df['CITY'] = bundle_df['CITY'].map(city_mapping)
-    bundle_df['ITEM_CATEGORY'] = bundle_df['ITEM_CATEGORY'].map(itemcat_mapping)
-    bundle_df['MENU_TYPE'] = bundle_df['MENU_TYPE'].map(menut_mapping)
-    bundle_df['TRUCK_BRAND_NAME'] = bundle_df['TRUCK_BRAND_NAME'].map(truckb_mapping)
-    bundle_df['MENU_ITEM_NAME'] = bundle_df['MENU_ITEM_NAME'].map(menuitem_mapping)
-    column_names = []
-    column_names = bundle_df.columns.tolist()
-    if st.button('Predict Price'):
-        input_data = column_names
-        input_df = bundle_df
-        prediction = xgbr_gs.predict(input_df)
-        output_data = pd.DataFrame(input_df, columns = input_df.columns)
-        output_data = pd.concat([qty_df, output_data], axis=1)
-        output_data = pd.concat([date_df, output_data], axis=1)
-        output_data['PREDICTED_PRICE'] = prediction 
-        output_data['SEASON'] = output_data['SEASON'].replace({v: k for k, v in season_mapping.items()})
-        output_data['CITY'] = output_data['CITY'].replace({v: k for k, v in city_mapping.items()})
-        output_data['ITEM_CATEGORY'] = output_data['ITEM_CATEGORY'].replace({v: k for k, v in itemcat_mapping.items()})
-        output_data['MENU_TYPE'] = output_data['MENU_TYPE'].replace({v: k for k, v in menut_mapping.items()})
-        output_data['TRUCK_BRAND_NAME'] = output_data['TRUCK_BRAND_NAME'].replace({v: k for k, v in truckb_mapping.items()})
-        output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
-        output_data['DATE'] = pd.to_datetime(output_data['DATE'])
-        output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m')
-        output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(str)
-        output_data['DATE_MONTH'] = output_data['DATE_MONTH'].map(value_mapping)
-        output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(object)
-        output_data = output_data.loc[output_data['DATE_MONTH'] == month_int]
-
-        unique_count = filter2021['DATE'].nunique()
-        unique_output_date_list = output_data['DATE'].unique().tolist()
-        grouped_data = output_data.groupby('DATE')['PREDICTED_PRICE'].sum()
-        grouped_data = pd.DataFrame(grouped_data)
-        grouped_data = grouped_data.sort_values(by='PREDICTED_PRICE', ascending=False)
-        date_list = []
-        date_list = grouped_data.index.tolist()
-        unique_dates = date_list[:unique_count]
-        final_df = output_data[output_data['DATE'].isin(unique_dates)]
-        final_df = final_df.drop(columns=['discount_10%','DATE_MONTH'])
-        filter2021 = filter2021.drop(columns=['discount_10%','DATE_MONTH','TRUCK_ID'])
-        filter2021.rename(columns={'TOTAL_SALES_PER_ITEM': 'PREDICTED_PRICE'}, inplace=True)
-        filter2021 = filter2021.reindex(columns=final_df.columns, fill_value=None)
-        filter2021.rename(columns={'PREDICTED_PRICE': 'TOTAL_SALES_PER_ITEM'}, inplace=True)
-
-
+        filterednot2022_df = filterednot2022_df[filterednot2022_df['VALUE'] != 0]
+        filterednot2022_df= pd.DataFrame(filterednot2022_df)
+        filterednot2022_df = filterednot2022_df[filterednot2022_df['DATE'].dt.year == 2021]
+        filter2021 = filterednot2022_df
+        filter2021.index = range(len(filter2021))
+        # filterednot2022_df['TOTAL_SALES'] = filterednot2022_df['TOTAL_QTY_SOLD'] * filterednot2022_df['TOTAL_SALES_PER_ITEM']
+        # filterednot2022_df.reset_index(drop=True, inplace=True)
 
         
         
 
-        st.write(final_df)
-        st.write(filter2021)
-        
+
+        qty_df = bundle_df['TOTAL_QTY_SOLD']
+        date_df = bundle_df['DATE']
+        bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
+        ## map values to put in dataframe
+        bundle_df['SEASON'] = bundle_df['SEASON'].map(season_mapping)
+        bundle_df['CITY'] = bundle_df['CITY'].map(city_mapping)
+        bundle_df['ITEM_CATEGORY'] = bundle_df['ITEM_CATEGORY'].map(itemcat_mapping)
+        bundle_df['MENU_TYPE'] = bundle_df['MENU_TYPE'].map(menut_mapping)
+        bundle_df['TRUCK_BRAND_NAME'] = bundle_df['TRUCK_BRAND_NAME'].map(truckb_mapping)
+        bundle_df['MENU_ITEM_NAME'] = bundle_df['MENU_ITEM_NAME'].map(menuitem_mapping)
+        column_names = []
+        column_names = bundle_df.columns.tolist()
+        if st.button('Predict Price'):
+            input_data = column_names
+            input_df = bundle_df
+            prediction = xgbr_gs.predict(input_df)
+            output_data = pd.DataFrame(input_df, columns = input_df.columns)
+            output_data = pd.concat([qty_df, output_data], axis=1)
+            output_data = pd.concat([date_df, output_data], axis=1)
+            output_data['PREDICTED_PRICE'] = prediction 
+            output_data['SEASON'] = output_data['SEASON'].replace({v: k for k, v in season_mapping.items()})
+            output_data['CITY'] = output_data['CITY'].replace({v: k for k, v in city_mapping.items()})
+            output_data['ITEM_CATEGORY'] = output_data['ITEM_CATEGORY'].replace({v: k for k, v in itemcat_mapping.items()})
+            output_data['MENU_TYPE'] = output_data['MENU_TYPE'].replace({v: k for k, v in menut_mapping.items()})
+            output_data['TRUCK_BRAND_NAME'] = output_data['TRUCK_BRAND_NAME'].replace({v: k for k, v in truckb_mapping.items()})
+            output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
+            output_data['DATE'] = pd.to_datetime(output_data['DATE'])
+            output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m')
+            output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(str)
+            output_data['DATE_MONTH'] = output_data['DATE_MONTH'].map(value_mapping)
+            output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(object)
+            output_data = output_data.loc[output_data['DATE_MONTH'] == month_int]
+
+            unique_count = filter2021['DATE'].nunique()
+            unique_output_date_list = output_data['DATE'].unique().tolist()
+            grouped_data = output_data.groupby('DATE')['PREDICTED_PRICE'].sum()
+            grouped_data = pd.DataFrame(grouped_data)
+            grouped_data = grouped_data.sort_values(by='PREDICTED_PRICE', ascending=False)
+            date_list = []
+            date_list = grouped_data.index.tolist()
+            unique_dates = date_list[:unique_count]
+            final_df = output_data[output_data['DATE'].isin(unique_dates)]
+            final_df = final_df.drop(columns=['discount_10%','DATE_MONTH'])
+            filter2021 = filter2021.drop(columns=['discount_10%','DATE_MONTH','TRUCK_ID'])
+            filter2021.rename(columns={'TOTAL_SALES_PER_ITEM': 'PREDICTED_PRICE'}, inplace=True)
+            filter2021 = filter2021.reindex(columns=final_df.columns, fill_value=None)
+            filter2021.rename(columns={'PREDICTED_PRICE': 'TOTAL_SALES_PER_ITEM'}, inplace=True)
 
 
-        final_df['PREDICTED_PRICE'] = final_df['PREDICTED_PRICE'].astype(float)
-        filter2021['TOTAL_SALES_PER_ITEM'] = filter2021['TOTAL_SALES_PER_ITEM'].astype(float)
 
-        column_sum_2021 = filter2021['TOTAL_SALES_PER_ITEM'].sum()
-        column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
+            
+            
+
+            st.write(final_df)
+            st.write(filter2021)
+            
 
 
-        st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
-        st.write('The predicted price for 2022 ${:.2f}.'.format(column_sum_2022))
+            final_df['PREDICTED_PRICE'] = final_df['PREDICTED_PRICE'].astype(float)
+            filter2021['TOTAL_SALES_PER_ITEM'] = filter2021['TOTAL_SALES_PER_ITEM'].astype(float)
+
+            column_sum_2021 = filter2021['TOTAL_SALES_PER_ITEM'].sum()
+            column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
+
+
+            st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
+            st.write('The predicted price for 2022 ${:.2f}.'.format(column_sum_2022))
         
 
     
