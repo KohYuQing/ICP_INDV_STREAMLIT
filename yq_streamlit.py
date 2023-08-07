@@ -163,8 +163,7 @@ with tab3:
     month_list = [1,2,3,4,5,6,7,8,9,10,11,12]
     new_list = [m for m in month_list if m not in filtered_df_list]
     new_list
-    for key in new_list:
-        month_mapping.pop(key, None)
+    month_mapping = {key: value for key, value in month_mapping.items() if value not in new_list}
     month_mapping
     month_reverse_mapping = {v: k for k, v in month_mapping.items()}
     month_labels = list(month_mapping.keys())
