@@ -144,24 +144,36 @@ with tab3:
     
 
     filtered_rows = []
+    filteredw2022_rows = []
     for index, row in maintable.iterrows():
         if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY']):
             filtered_rows.append(row)
+            
+    for index, row in woy2022_df.iterrows():
+        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY']):
+            filteredw2022_rows.append(row)
 
     
 
     
     filtered_df = pd.DataFrame(filtered_rows, columns= maintable.columns)
     filtered_df_another = pd.DataFrame(filtered_rows, columns= maintable.columns)
+    filteredw2022_rows = pd.DataFrame(filteredw2022_rows, columns= woy2022_df.columns)
+    filteredw2022_rows['DATE'] = pd.to_datetime(filteredw2022_rows['DATE'])
+    filteredw2022_rows['DATE_MONTH'] = filteredw2022_rows['DATE'].dt.strftime('%m')
+    filteredw2022_rows['DATE_MONTH'] = filteredw2022_rows['DATE_MONTH'].astype(str)
+    filteredw2022_rows['DATE_MONTH'] = filteredw2022_rows['DATE_MONTH'].map(value_mapping)
+    filteredw2022_df_list = filteredw2022_rows['DATE_MONTH'].unique().tolist()
     # find unique months if month number not in dictionary then drop that value 
     filtered_df_another['DATE'] = pd.to_datetime(filtered_df['DATE'])
     filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE'].dt.strftime('%m')
     filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE_MONTH'].astype(str)
     filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE_MONTH'].map(value_mapping)
     filtered_df_list = filtered_df_another['DATE_MONTH'].unique().tolist()
-    filtered_df_list
+    concat_list = filteredw2022_df_list + filtered_df_list
+    concat_list
     month_list = [1,2,3,4,5,6,7,8,9,10,11,12]
-    new_list = [m for m in month_list if m not in filtered_df_list]
+    new_list = [m for m in month_list if m not in concat_list]
     new_list
     month_mapping = {key: value for key, value in month_mapping.items() if value not in new_list}
     month_mapping
