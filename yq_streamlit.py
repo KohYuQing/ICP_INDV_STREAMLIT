@@ -255,35 +255,15 @@ with tab3:
         date_list = grouped_data.index.tolist()
         unique_dates = date_list[:unique_count]
         final_df = output_data[output_data['DATE'].isin(unique_dates)]
-
-        # groupedby_datevalue = outputfilter_df.groupby(['DATE','VALUE'])['PREDICTED_PRICE'].sum()
-        # datevalue_df = groupedby_datevalue.reset_index()
-        # unique_date_list = datevalue_df['DATE'].unique().tolist()
-        # randomly_kept_rows = []
-        # for date, group in datevalue_df.groupby('DATE'):
-        #     random_index = group['PREDICTED_PRICE'].idxmax()
-        #     randomly_kept_rows.append(random_index)
-        # final = datevalue_df.loc[randomly_kept_rows]
-        # unique_value_list = final['VALUE'].unique().tolist()
-        # final_df = outputfilter_df[outputfilter_df['VALUE'].isin(unique_value_list)]
-        # final_df = pd.DataFrame(final_df, columns = output_data.columns)
-
-        
-
-        
-
-        
+        final_df = final_df.drop(columns=['discount_10%','DATE_MONTH'])
+        filter2021 = filter2021.drop(columns=['discount_10%','DATE_MONTH','TRUCK_ID'])
+        filter2021.rename(columns={'TOTAL_SALES_PER_ITEM': 'PREDICTED_PRICE'}, inplace=True)
+        sorted_columns = sorted(final_df.columns)
+        filter2021 = filter2021[sorted_columns]
+        filter2021.rename(columns={'PREDICTED_PRICE': 'TOTAL_SALES_PER_ITEM'}, inplace=True)
 
 
 
-        # filtered_month = []
-        # month_input_str = str(month_input)
-        # matching_rows = []
-        # for index, row in output_data.iterrows():
-        #     if month_input_str in row['DATE_MONTH']:
-        #         matching_rows.append(row)
-        # output_data = pd.DataFrame(matching_rows)
-        # output_data.reset_index(drop=True, inplace=True)
         
         
 
@@ -298,88 +278,10 @@ with tab3:
         column_sum_2021 = filter2021['TOTAL_SALES_PER_ITEM'].sum()
         column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
 
-        # column_sum_2021 = 0
-        # column_sum_2022 = 0
 
-        # for value in filter2021['TOTAL_SALES_PER_ITEM']:
-        #     column_sum_2021 += value
-        #     value
-        # for value in final_df['PREDICTED_PRICE']:
-        #     column_sum_2022 += value
-        # Display the sum
         st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
         st.write('The predicted price for 2022 ${:.2f}.'.format(column_sum_2022))
-        
-    # woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
-    # woy2022_df['DATE_MONTH'] = woy2022_df['DATE'].dt.strftime('%m')
-    # woy2022_rows = []
-    # for index, row in woy2022_df.iterrows():
-    #     if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY']) & (month_input in row['DATE_MONTH']):
-    #         woy2022_rows.append(row)
-    #     # if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
-    #     #     woy2022_rows.append(row)
     
-
-    # filteredwo2022_df = pd.DataFrame(woy2022_rows, columns= woy2022_df.columns)
-    # bundlewo2022_df = filteredwo2022_df[filteredwo2022_df['VALUE'] != 0]
-    # bundlewo2022_df = pd.DataFrame(bundlewo2022_df)
-    # bundlewo2022_df.reset_index(drop=True, inplace=True)
-    # bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
-    # bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
-    # bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'].dt.year == 2021]
-    
-    
-
-
- 
-    # column_names = []
-    # column_names = bundle_df.columns.tolist()
-    # if st.button('Predict Price'):
-    #     input_data = column_names
-    #     input_df = bundle_df
-    #     prediction = xgbr_gs.predict(input_df)
-    #     output_data = pd.DataFrame(input_df, columns = input_df.columns)
-    #     output_data = pd.concat([qty_df, output_data], axis=1)
-    #     output_data = pd.concat([date_df, output_data], axis=1)
-    #     output_data['PREDICTED_PRICE'] = prediction 
-    #     output_data['TOTAL_SALES'] = output_data['PREDICTED_PRICE'] * output_data['TOTAL_QTY_SOLD']
-    #     output_data['SEASON'] = output_data['SEASON'].replace({v: k for k, v in season_mapping.items()})
-    #     output_data['CITY'] = output_data['CITY'].replace({v: k for k, v in city_mapping.items()})
-    #     output_data['ITEM_CATEGORY'] = output_data['ITEM_CATEGORY'].replace({v: k for k, v in itemcat_mapping.items()})
-    #     output_data['MENU_TYPE'] = output_data['MENU_TYPE'].replace({v: k for k, v in menut_mapping.items()})
-    #     output_data['TRUCK_BRAND_NAME'] = output_data['TRUCK_BRAND_NAME'].replace({v: k for k, v in truckb_mapping.items()})
-    #     output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
-    #     output_data['DATE'] = pd.to_datetime(output_data['DATE'])
-    #     output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m')
-    #     output_month = []
-    #     bundle2021_df['DATE_MONTH'] = bundle2021_df['DATE_MONTH'].astype(int)
-    #     output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(int)
-    #     for index, row in bundle2021_df.iterrows():
-    #         if (month_input in output_data['DATE_MONTH']) :
-    #             output_month.append(row)
-    #     filtered_month = pd.DataFrame(output_month, columns= output_data.columns)
-
-    #     filtered_month = []
-    #     for index, row in bundle2021_df.iterrows():
-    #         if (month_input in row['DATE_MONTH']) :
-    #             filtered_month.append(row)
-    #     bundle2021_df_month = pd.DataFrame(filtered_month, columns= bundle2021_df.columns)
-
-        
-        
-
-        
-        # st.write(bundle2021_df_month)
-        # st.write(filtered_month)
-        
-        # column_sum_2021 = bundle2021_df['TOTAL_SALES'].sum()
-        # column_sum_2022 = output_data['TOTAL_SALES'].sum()
-
-
-        # # Display the sum
-        # st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
-        # st.write('The predicted price for 2022 ${:.2f}.'.format(column_sum_2022))
-
 
 
         
