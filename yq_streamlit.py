@@ -202,7 +202,7 @@ with tab3:
         output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m')
 
         filtered_month = []
-        for index, row in maintable.iterrows():
+        for index, row in bundle2021_df.iterrows():
             if (month_input in row['DATE_MONTH']) :
                 filtered_month.append(row)
         filtered_month = pd.DataFrame(filtered_month, columns= output_data.columns)
