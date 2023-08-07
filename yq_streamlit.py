@@ -162,8 +162,10 @@ with tab3:
     filterednot2022_df = filterednot2022_df[filterednot2022_df['VALUE'] != 0]
     filterednot2022_df= pd.DataFrame(filterednot2022_df)
     filterednot2022_df = filterednot2022_df[filterednot2022_df['DATE'].dt.year == 2021]
+    filter2021 = filterednot2022_df
+    filter2021.reset_index(drop=True, inplace=True)
     # filterednot2022_df['TOTAL_SALES'] = filterednot2022_df['TOTAL_QTY_SOLD'] * filterednot2022_df['TOTAL_SALES_PER_ITEM']
-    filterednot2022_df.reset_index(drop=True, inplace=True)
+    # filterednot2022_df.reset_index(drop=True, inplace=True)
     
     
 
@@ -201,7 +203,7 @@ with tab3:
         output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(object)
         output_data = output_data.loc[output_data['DATE_MONTH'] == month_int]
 
-        unique_count = filterednot2022_df['DATE'].nunique()
+        unique_count = filter2021['DATE'].nunique()
         unique_output_date_list = output_data['DATE'].unique().tolist()
         grouped_data = output_data.groupby('DATE')['PREDICTED_PRICE'].sum()
         grouped_data = pd.DataFrame(grouped_data)
@@ -251,13 +253,13 @@ with tab3:
         
 
         st.write(final_df)
-        st.write(filterednot2022_df)
+        st.write(filter2021)
         
         final_df['PREDICTED_PRICE'].dtype
         filterednot2022_df['TOTAL_SALES_PER_ITEM'].dtype
 
         final_df['PREDICTED_PRICE'] = final_df['PREDICTED_PRICE'].astype(float)
-        filterednot2022_df['TOTAL_SALES_PER_ITEM'] = filterednot2022_df['TOTAL_SALES_PER_ITEM'].astype(float)
+        filter2021['TOTAL_SALES_PER_ITEM'] = filter2021['TOTAL_SALES_PER_ITEM'].astype(float)
         final_df['PREDICTED_PRICE'].dtype
         filterednot2022_df['TOTAL_SALES_PER_ITEM'].dtype
 
@@ -267,7 +269,7 @@ with tab3:
         column_sum_2021 = 0
         column_sum_2022 = 0
 
-        for value in filterednot2022_df['TOTAL_SALES_PER_ITEM']:
+        for value in filter2021['TOTAL_SALES_PER_ITEM']:
             column_sum_2021 += value
         for value in final_df['PREDICTED_PRICE']:
             column_sum_2022 += value
