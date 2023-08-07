@@ -185,6 +185,8 @@ with tab3:
         st.write(output_data)
 
     bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
+    bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
+    bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'] == 2021]
     bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'].dt.year == 2021]
     st.write(bundle2021_df)
 
