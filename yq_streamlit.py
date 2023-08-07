@@ -207,11 +207,11 @@ with tab3:
         grouped_data = grouped_data.sort_values(by='TOTAL_SALES', ascending=False)
         grouped_data
         date_list = []
-        unique_dates = []
         date_list = grouped_data.index.tolist()
         date_list
         unique_dates = date_list[:unique_count]
         unique_dates
+        outputfilter_df = output_data[output_data['DATE'].isin(unique_dates)]
 
         
 
@@ -228,7 +228,7 @@ with tab3:
         
         
 
-        st.write(output_data)
+        st.write(outputfilter_df)
         st.write(filterednot2022_df)
         
     # woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
