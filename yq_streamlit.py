@@ -172,6 +172,14 @@ with tab3:
         output_data = pd.concat([qty_df, output_data], axis=1)
         output_data['PREDICTED_PRICE'] = prediction 
         output_data['TOTAL_SALES'] = output_data['PREDICTED_PRICE'] * output_data['TOTAL_QTY_SOLD']
+        output_data['SEASON'] = output_data['SEASON'].map(season_mapping)
+        output_data['CITY'] = output_data['CITY'].map(city_mapping)
+        output_data['ITEM_CATEGORY'] = output_data['ITEM_CATEGORY'].map(itemcat_mapping)
+        output_data['MENU_TYPE'] = output_data['MENU_TYPE'].map(menut_mapping)
+        output_data['TRUCK_BRAND_NAME'] = output_data['TRUCK_BRAND_NAME'].map(truckb_mapping)
+        output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].map(menuitem_mapping)
+
+    
         
         st.write(output_data)
 
