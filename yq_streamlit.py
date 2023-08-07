@@ -107,6 +107,11 @@ with tab3:
     menuitem_reverse_mapping = {v: k for k, v in menuitem_mapping.items()}
     menuitem_labels = list(menuitem_mapping.keys())
 
+    month_mapping = {'Janurary': 1, 'Feburary': 2, "March": 3, 'April': 4, 'May': 5, 'June': 6, 'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12}
+    month_reverse_mapping = {v: k for k, v in month_mapping.items()}
+    month_labels = list(month_mapping.keys())
+    month_values = list(month_mapping.values())
+
 
     def get_CITY():
         city = st.selectbox('Select a City', city_labels)
@@ -120,6 +125,12 @@ with tab3:
     truckb_input = get_truckb()
     truckb_int = truckb_mapping[truckb_input]
 
+    def get_month():
+        month_chosen = st.selectbox('Select Month', month_chosen)
+        return month_chosen
+    month_input = get_month()
+    month_int = month_mapping[month_input]
+
     # def get_season():
     #     season = st.selectbox('Select a season', season_labels)
     #     return season
@@ -127,18 +138,18 @@ with tab3:
     # season_int = season_mapping[season_input]
     
 
-
+    maintable['DATE_MONTH'] = maintable['DATE_MONTH'].dt.strftime('%m')
 
     filtered_rows = []
     for index, row in maintable.iterrows():
-        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY']):
+        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY'])& (month_input in row['DATE_MONTH']):
             filtered_rows.append(row)
         # if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
         #     filtered_rows.append(row)
 
     woy2022_rows = []
     for index, row in woy2022_df.iterrows():
-        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY']):
+        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY'])&(month_input in row['DATE_MONTH']):
             woy2022_rows.append(row)
         # if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
         #     woy2022_rows.append(row)
@@ -158,7 +169,7 @@ with tab3:
 
     qty_df = bundle_df['TOTAL_QTY_SOLD']
     date_df = bundle_df['DATE']
-    bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
+    bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE', 'DATE_MONTH'], axis = 1)
     
 
     ## map values to put in dataframe
