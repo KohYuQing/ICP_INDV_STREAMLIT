@@ -212,19 +212,19 @@ with tab3:
         date_list = []
         date_list = grouped_data.index.tolist()
         unique_dates = date_list[:unique_count]
-        outputfilter_df = output_data[output_data['DATE'].isin(unique_dates)]
+        final_df = output_data[output_data['DATE'].isin(unique_dates)]
 
-        groupedby_datevalue = outputfilter_df.groupby(['DATE','VALUE'])['PREDICTED_PRICE'].sum()
-        datevalue_df = groupedby_datevalue.reset_index()
-        unique_date_list = datevalue_df['DATE'].unique().tolist()
-        randomly_kept_rows = []
-        for date, group in datevalue_df.groupby('DATE'):
-            random_index = group['PREDICTED_PRICE'].idxmax()
-            randomly_kept_rows.append(random_index)
-        final = datevalue_df.loc[randomly_kept_rows]
-        unique_value_list = final['VALUE'].unique().tolist()
-        final_df = outputfilter_df[outputfilter_df['VALUE'].isin(unique_value_list)]
-        final_df = pd.DataFrame(final_df, columns = output_data.columns)
+        # groupedby_datevalue = outputfilter_df.groupby(['DATE','VALUE'])['PREDICTED_PRICE'].sum()
+        # datevalue_df = groupedby_datevalue.reset_index()
+        # unique_date_list = datevalue_df['DATE'].unique().tolist()
+        # randomly_kept_rows = []
+        # for date, group in datevalue_df.groupby('DATE'):
+        #     random_index = group['PREDICTED_PRICE'].idxmax()
+        #     randomly_kept_rows.append(random_index)
+        # final = datevalue_df.loc[randomly_kept_rows]
+        # unique_value_list = final['VALUE'].unique().tolist()
+        # final_df = outputfilter_df[outputfilter_df['VALUE'].isin(unique_value_list)]
+        # final_df = pd.DataFrame(final_df, columns = output_data.columns)
 
         
 
