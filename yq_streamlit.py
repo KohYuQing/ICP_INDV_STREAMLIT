@@ -179,10 +179,11 @@ with tab3:
         output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(object)
         
         filtered_month = []
-        month_input = str(month_input)
+        month_input_str = str(month_input)
+        matching_rows = []
         for index, row in output_data.iterrows():
-            if (month_input in row['DATE_MONTH']):
-                filtered_month.append(row)
+            if month_input_str in row['DATE_MONTH']:
+                matching_rows.append(row)
         output_data = pd.DataFrame(filtered_month)
         output_data.reset_index(drop=True, inplace=True)
         
