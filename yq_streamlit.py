@@ -213,16 +213,19 @@ with tab3:
 
         groupedby_datevalue = output_data.groupby(['DATE','VALUE'])['TOTAL_SALES'].sum()
         datevalue_df = groupedby_datevalue.reset_index()
-        datevalue_df
         unique_date_list = datevalue_df['DATE'].unique().tolist()
         randomly_kept_rows = []
         for date, group in datevalue_df.groupby('DATE'):
             random_index = random.choice(group.index)
             randomly_kept_rows.append(random_index)
         final = datevalue_df.loc[randomly_kept_rows]
-        final
+        unique_value_list = datevalue_df['VALUE'].unique().tolist()
+        final_df = output_data[output_data['DATE'].isin(unique_value_list)]
 
-        datevalue_df
+        final
+        final_df
+
+        
 
         
 
