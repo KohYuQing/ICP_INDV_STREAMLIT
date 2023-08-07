@@ -134,7 +134,7 @@ with tab3:
     month_input = get_month()
     month_int = month_mapping[month_input]
     
-    Se_column_dtype = maintable['CITY'].dtype
+    Se_column_dtype = city_input.dtype
 
     filtered_rows = []
     for index, row in maintable.iterrows():
@@ -184,7 +184,7 @@ with tab3:
                 filtered_month.append(row)
         output_data = pd.DataFrame(filtered_month)
         output_data.reset_index(drop=True, inplace=True)
-        date_column_dtype = output_data['DATE_MONTH'].dtype
+        date_column_dtype = month_input.dtype
         ds_column_dtype = output_data['MENU_ITEM_NAME'].dtype
         st.write(date_column_dtype)
         st.write(Se_column_dtype)
