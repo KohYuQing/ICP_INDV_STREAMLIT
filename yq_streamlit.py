@@ -272,7 +272,7 @@ with tab3:
 
         for value in filter2021['TOTAL_SALES_PER_ITEM']:
             column_sum_2021 += value
-            print(value)
+            value
         for value in final_df['PREDICTED_PRICE']:
             column_sum_2022 += value
         # Display the sum
