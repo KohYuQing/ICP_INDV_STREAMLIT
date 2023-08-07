@@ -202,8 +202,8 @@ with tab3:
 
 
         # Display the sum
-        st.write('The predicted price dor 2021 ${:.2f}.'.format(column_sum_2021))
-        st.write('The predicted price dor 2022 ${:.2f}.'.format(column_sum_2022))
+        st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
+        st.write('The predicted price for 2022 ${:.2f}.'.format(column_sum_2022))
 
     # bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
     # bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
