@@ -179,11 +179,11 @@ with tab3:
         output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(object)
         
         filtered_month = []
-        for index, row in output_data.iterrows():
-            if (month_input in row['DATE_MONTH']):
-                filtered_month.append(row)
-        output_data = pd.DataFrame(filtered_month)
-        output_data.reset_index(drop=True, inplace=True)
+        # for index, row in output_data.iterrows():
+        #     if (month_input in row['DATE_MONTH']):
+        #         filtered_month.append(row)
+        # output_data = pd.DataFrame(filtered_month)
+        # output_data.reset_index(drop=True, inplace=True)
         date_column_dtype = month_input.dtype
         ds_column_dtype = output_data['MENU_ITEM_NAME'].dtype
         st.write(date_column_dtype)
