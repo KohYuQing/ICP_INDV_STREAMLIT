@@ -63,6 +63,8 @@ with tab3:
     data = load_data()
     github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/y2022_data_withqty.zip"
     maintable = read_csv_from_zipped_github(github_url)
+    github_url_woy2022 = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/woy2022_data.zip"
+    woy2022_df = read_csv_from_zipped_github(github_url_woy2022)
 
     with open('xgbr_gs.pkl', 'rb') as file:
         xgbr_gs = joblib.load(file)
@@ -131,13 +133,21 @@ with tab3:
     for index, row in maintable.iterrows():
         if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
             filtered_rows.append(row)
+
+    woy2022_rows = []
+    for index, row in woy2022_df.iterrows():
+        if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
+            woy2022_rows.append(row)
     
     filtered_df = pd.DataFrame(filtered_rows, columns= maintable.columns)
     bundle_df = filtered_df[filtered_df['VALUE'] != 0]
     bundle_df = pd.DataFrame(bundle_df)
     bundle_df.reset_index(drop=True, inplace=True)
-    if st.button('random'):
-        st.write(bundle_df)
+
+    filteredwo2022_df = pd.DataFrame(woy2022_rows, columns= woy2022_df.columns)
+    bundlewo2022_df = filteredwo2022_df[filteredwo2022_df['VALUE'] != 0]
+    bundlewo2022_df = pd.DataFrame(bundlewo2022_df)
+    bundlewo2022_df.reset_index(drop=True, inplace=True)
 
     qty_df = bundle_df['TOTAL_QTY_SOLD']
     bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
@@ -161,8 +171,11 @@ with tab3:
         output_data = pd.DataFrame(input_df, columns = input_df.columns)
         output_data = pd.concat([qty_df, output_data], axis=1)
         output_data['PREDICTED_PRICE'] = prediction 
+        output_data['TOTAL_SALES'] = output_data['PREDICTED_PRICE'] * output_data['TOTAL_QTY_SOLD']
+        
         st.write(output_data)
 
+        
         
             
 
