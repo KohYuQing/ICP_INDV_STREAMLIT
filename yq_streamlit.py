@@ -202,8 +202,12 @@ with tab3:
         unique_count = filterednot2022_df['DATE'].nunique()
         unique_count
         unique_output_date_list = output_data['DATE'].unique().tolist()
-        grouped_data = output_data.groupby('DATE')['PREDICTED_PRICE'].sum()
+        grouped_data = output_data.groupby('DATE')['TOTAL_SALES'].sum()
+        grouped_data = grouped_data.sort_values(ascending=False)
         grouped_data
+        date_list = []
+        date_list = grouped_data['DATE'].tolist()
+        date_list
 
 
 
