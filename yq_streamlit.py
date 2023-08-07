@@ -204,7 +204,7 @@ with tab3:
         unique_output_date_list = output_data['DATE'].unique().tolist()
         grouped_data = output_data.groupby('DATE')['TOTAL_SALES'].sum()
         grouped_data = pd.DataFrame(grouped_data)
-        grouped_data = grouped_data.sort_values(ascending=False)
+        grouped_data = grouped_data.sort_values(by='TOTAL_SALES', ascending=False)
         grouped_data
         date_list = []
         date_list = grouped_data['DATE'].tolist()
