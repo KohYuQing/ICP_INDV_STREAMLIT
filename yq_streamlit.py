@@ -316,6 +316,7 @@ with tab3:
     bundle_df = filtered_df[filtered_df['VALUE'] != 0]
     bundle_df = pd.DataFrame(bundle_df)
     bundle_df.reset_index(drop=True, inplace=True)
+    dfwtarget = bundle_df
     bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM'], axis = 1)
 
     ## map values to put in dataframe
@@ -325,10 +326,18 @@ with tab3:
     bundle_df['MENU_TYPE'] = bundle_df['MENU_TYPE'].map(menut_mapping)
     bundle_df['TRUCK_BRAND_NAME'] = bundle_df['TRUCK_BRAND_NAME'].map(truckb_mapping)
     bundle_df['MENU_ITEM_NAME'] = bundle_df['MENU_ITEM_NAME'].map(menuitem_mapping)
+
+    dfwtarget['SEASON'] = dfwtarget['SEASON'].map(season_mapping)
+    dfwtarget['CITY'] = dfwtarget['CITY'].map(city_mapping)
+    dfwtarget['ITEM_CATEGORY'] = dfwtarget['ITEM_CATEGORY'].map(itemcat_mapping)
+    dfwtarget['MENU_TYPE'] = dfwtarget['MENU_TYPE'].map(menut_mapping)
+    dfwtarget['TRUCK_BRAND_NAME'] = dfwtarget['TRUCK_BRAND_NAME'].map(truckb_mapping)
+    dfwtarget['MENU_ITEM_NAME'] = dfwtarget['MENU_ITEM_NAME'].map(menuitem_mapping)
+
     column_names = []
     column_names = bundle_df.columns.tolist()
     if st.button('Generate Records'):
-        st.write(bundle_df)
+        st.write(dfwtarget)
     if st.button('Predict Price'):
         input_data = column_names
         input_df = bundle_df
