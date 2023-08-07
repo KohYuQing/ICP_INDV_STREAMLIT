@@ -198,7 +198,9 @@ with tab3:
         output_data['DATE_MONTH'] = output_data['DATE_MONTH'].map(value_mapping)
         output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(object)
         output_data = output_data.loc[output_data['DATE_MONTH'] == month_int]
-        
+
+        unique_count = filterednot2022_df['DATE'].nunique()
+        unique_count
 
 
 
