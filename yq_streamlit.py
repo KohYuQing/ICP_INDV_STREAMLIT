@@ -221,6 +221,7 @@ with tab3:
         final = datevalue_df.loc[randomly_kept_rows]
         unique_value_list = final['VALUE'].unique().tolist()
         final_df = output_data[output_data['VALUE'].isin(unique_value_list)]
+        final_df = final_df.reset_index()
 
         datevalue_df    
         final
