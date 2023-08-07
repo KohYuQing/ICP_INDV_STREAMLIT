@@ -139,6 +139,9 @@ with tab3:
     
     maintable['DATE'] = pd.to_datetime(maintable['DATE'])
     maintable['DATE_MONTH'] = maintable['DATE'].dt.strftime('%m')
+
+    woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
+    woy2022_df['DATE_MONTH'] = woy2022_df['DATE'].dt.strftime('%m')
     st.write(maintable)
 
     filtered_rows = []
