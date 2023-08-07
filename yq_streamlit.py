@@ -207,7 +207,8 @@ with tab3:
         grouped_data = grouped_data.sort_values(by='TOTAL_SALES', ascending=False)
         grouped_data
         date_list = []
-        date_list = grouped_data['DATE'].tolist()
+        date_list = grouped_data.index.tolist()
+        
         date_list
 
 
