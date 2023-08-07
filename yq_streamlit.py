@@ -190,6 +190,12 @@ with tab3:
     bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'].dt.year == 2021]
     st.write(bundle2021_df)
 
+    output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
+    bundlewo2022_df['DATE_MONTH'] = bundlewo2022_df['DATE'].dt.strftime('%m-%d')
+    matching_dates = bundlewo2022_df['DATE_MONTH'].unique()
+    filtered_output = output_data[output_data['month_day'].isin(matching_dates)].copy()
+    st.write(filtered_output)
+
 
         
         
