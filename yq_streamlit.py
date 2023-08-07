@@ -159,8 +159,11 @@ with tab3:
     filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE_MONTH'].astype(str)
     filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE_MONTH'].map(value_mapping)
     filtered_df_list = filtered_df_another['DATE'].unique().tolist()
-    month_mapping = {
-    month: value for month, value in month_mapping.items() if value in filtered_df_list}
+    month_list = [1,2,3,4,5,6,7,8,9,10,11,12]
+    new_list = [m for m in filtered_df_list if m not in month_list]
+    if filtered_df_list not in month_mapping:
+        month_mapping.pop(new_list)
+
     month_reverse_mapping = {v: k for k, v in month_mapping.items()}
     month_labels = list(month_mapping.keys())
     month_values = list(month_mapping.values())
