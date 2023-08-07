@@ -139,6 +139,7 @@ with tab3:
     
     maintable['DATE'] = pd.to_datetime(maintable['DATE'])
     maintable['DATE_MONTH'] = maintable['DATE'].dt.strftime('%m')
+    maintable['DATE_MONTH'] = maintable['DATE_MONTH'].astype(int)
     st.write(maintable)
 
     filtered_rows = []
