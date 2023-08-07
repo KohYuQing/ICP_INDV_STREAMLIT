@@ -170,7 +170,7 @@ with tab3:
         output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
         output_data['DATE'] = pd.to_datetime(output_data['DATE'])
         output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m')
-        output_data['DATE_MONTH'] = output_data['DATE_MONTH'].lstrip('0')
+        output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(str).str.lstrip('0')
         filtered_month = []
         for index, row in output_data.iterrows():
             if (month_input in row['DATE_MONTH']):
