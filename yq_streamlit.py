@@ -184,7 +184,7 @@ with tab3:
         bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
         bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
         bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'] == 2021]
-        output_data = output_data[output_data['DATE'].dt.year]
+        output_data['DATE'] = pd.to_datetime(output_data['DATE'])
 
         output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
         bundlewo2022_df['DATE_MONTH'] = bundlewo2022_df['DATE'].dt.strftime('%m-%d')
