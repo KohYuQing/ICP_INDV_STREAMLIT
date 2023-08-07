@@ -9,6 +9,7 @@ from xgboost import XGBRegressor
 import requests
 import zipfile
 import io
+import random
 
 st.set_page_config(page_title='INVEMP Tasty Bytes Group 5', page_icon='🍖🍕🍜')
 
@@ -212,6 +213,11 @@ with tab3:
 
         groupedby_datevalue = output_data.groupby(['DATE','VALUE'])['TOTAL_SALES'].sum()
         datevalue_df = pd.DataFrame(groupedby_datevalue)
+        datevalue_df['DATE'] = pd.to_datetime(datevalue_df['DATE'])
+        grouped_data = datevalue_df.groupby(datevalue_df['DATE'].dt.date).apply(lambda x: x.index.tolist())
+        random_indexes = [random.choice(index_list) for index_list in grouped_data]
+        filtered_data = output_data.drop(index=random_indexes)
+        filtered_data 
 
         datevalue_df
 
