@@ -134,6 +134,7 @@ with tab3:
     month_input = get_month()
     month_int = month_mapping[month_input]
     
+    Se_column_dtype = maintable['CITY'].dtype
 
     filtered_rows = []
     for index, row in maintable.iterrows():
@@ -186,7 +187,7 @@ with tab3:
         date_column_dtype = output_data['DATE_MONTH'].dtype
         ds_column_dtype = output_data['MENU_ITEM_NAME'].dtype
         st.write(date_column_dtype)
-        st.write(ds_column_dtype)
+        st.write(Se_column_dtype)
         st.write(output_data)
         
     # woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
