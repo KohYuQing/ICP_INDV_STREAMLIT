@@ -148,14 +148,15 @@ with tab3:
     bundle_df.reset_index(drop=True, inplace=True)
 
     filterednot2022_rows = []
-    woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
-    woy2022_df['DATE_MONTH'] = woy2022_df['DATE'].dt.strftime('%m')
-    woy2022_df['DATE_MONTH'] = woy2022_df['DATE_MONTH'].astype(str)
-    woy2022_df['DATE_MONTH'] = woy2022_df['DATE_MONTH'].map(value_mapping)
-    woy2022_df['DATE_MONTH'] = woy2022_df['DATE_MONTH'].astype(object)
     filterednot2022_df = woy2022_df.loc[
     (woy2022_df['TRUCK_BRAND_NAME'] == truckb_input) &
     (woy2022_df['CITY'] == city_input)]
+    filterednot2022_df['DATE'] = pd.to_datetime(filterednot2022_df['DATE'])
+    filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE'].dt.strftime('%m')
+    filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE_MONTH'].astype(str)
+    filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE_MONTH'].map(value_mapping)
+    filterednot2022_df['DATE_MONTH'] = filterednot2022_df['DATE_MONTH'].astype(object)
+    filterednot2022_df = filterednot2022_df.loc[filterednot2022_df['DATE_MONTH'] == month_int]
 
     filterednot2022_df = filterednot2022_df[filterednot2022_df['VALUE'] != 0]
     filterednot2022_df= pd.DataFrame(filterednot2022_df)
