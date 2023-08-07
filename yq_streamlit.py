@@ -219,7 +219,7 @@ with tab3:
             random_index = random.choice(group.index)
             randomly_kept_rows.append(random_index)
         final = datevalue_df.loc[randomly_kept_rows]
-        unique_value_list = datevalue_df['VALUE'].unique().tolist()
+        unique_value_list = final['VALUE'].unique().tolist()
         final_df = output_data[output_data['VALUE'].isin(unique_value_list)]
 
         datevalue_df    
