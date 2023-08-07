@@ -148,6 +148,9 @@ with tab3:
     bundlewo2022_df = filteredwo2022_df[filteredwo2022_df['VALUE'] != 0]
     bundlewo2022_df = pd.DataFrame(bundlewo2022_df)
     bundlewo2022_df.reset_index(drop=True, inplace=True)
+    bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
+    bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
+    bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'] == 2021]
 
     qty_df = bundle_df['TOTAL_QTY_SOLD']
     date_df = bundle_df['DATE']
@@ -181,19 +184,16 @@ with tab3:
         output_data['TRUCK_BRAND_NAME'] = output_data['TRUCK_BRAND_NAME'].replace({v: k for k, v in truckb_mapping.items()})
         output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
 
-        bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
-        bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
-        bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'] == 2021]
+        
         output_data['DATE'] = pd.to_datetime(output_data['DATE'])
 
-        output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
-        bundle2021_df['DATE_MONTH'] = bundle2021_df['DATE'].dt.strftime('%m-%d')
-        matching_dates = bundle2021_df['DATE_MONTH'].unique()
-        filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
-        st.write(filtered_output)
-        st.write(bundle2021_df)
+        # output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
+        # bundle2021_df['DATE_MONTH'] = bundle2021_df['DATE'].dt.strftime('%m-%d')
+        # matching_dates = bundle2021_df['DATE_MONTH'].unique()
+        # filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
 
-    
+        # st.write(filtered_output)
+        st.write(bundle2021_df)
         st.write(output_data)
 
     # bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
