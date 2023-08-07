@@ -144,7 +144,7 @@ with tab3:
             filtered_rows.append(row)
         # if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
         #     filtered_rows.append(row)
-    bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
+    woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
     woy2022_df['DATE_MONTH'] = woy2022_df['DATE'].dt.strftime('%m')
     woy2022_rows = []
     for index, row in woy2022_df.iterrows():
