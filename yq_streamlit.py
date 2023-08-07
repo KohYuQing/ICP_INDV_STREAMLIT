@@ -166,7 +166,7 @@ with tab3:
     filter2021.index = range(len(filter2021))
     # filterednot2022_df['TOTAL_SALES'] = filterednot2022_df['TOTAL_QTY_SOLD'] * filterednot2022_df['TOTAL_SALES_PER_ITEM']
     # filterednot2022_df.reset_index(drop=True, inplace=True)
-    
+
     
     
 
@@ -272,6 +272,7 @@ with tab3:
 
         for value in filter2021['TOTAL_SALES_PER_ITEM']:
             column_sum_2021 += value
+            print(value)
         for value in final_df['PREDICTED_PRICE']:
             column_sum_2022 += value
         # Display the sum
