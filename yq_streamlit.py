@@ -316,8 +316,7 @@ with tab3:
     bundle_df = filtered_df[filtered_df['VALUE'] != 0]
     bundle_df = pd.DataFrame(bundle_df)
     bundle_df.reset_index(drop=True, inplace=True)
-    if st.button('Generate Records'):
-        st.write(bundle_df)
+    bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM'], axis = 1)
 
     ## map values to put in dataframe
     bundle_df['SEASON'] = bundle_df['SEASON'].map(season_mapping)
@@ -326,7 +325,7 @@ with tab3:
     bundle_df['MENU_TYPE'] = bundle_df['MENU_TYPE'].map(menut_mapping)
     bundle_df['TRUCK_BRAND_NAME'] = bundle_df['TRUCK_BRAND_NAME'].map(truckb_mapping)
     bundle_df['MENU_ITEM_NAME'] = bundle_df['MENU_ITEM_NAME'].map(menuitem_mapping)
-    if st.button('RANDOM'):
+    if st.button('Generate Records'):
         st.write(bundle_df)
     
 
