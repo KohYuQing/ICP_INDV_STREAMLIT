@@ -211,7 +211,7 @@ with tab3:
         unique_dates = date_list[:unique_count]
         outputfilter_df = output_data[output_data['DATE'].isin(unique_dates)]
 
-        groupedby_datevalue = output_data.groupby(['DATE','VALUE'])['TOTAL_SALES'].sum()
+        groupedby_datevalue = outputfilter_df.groupby(['DATE','VALUE'])['TOTAL_SALES'].sum()
         datevalue_df = groupedby_datevalue.reset_index()
         unique_date_list = datevalue_df['DATE'].unique().tolist()
         randomly_kept_rows = []
@@ -220,8 +220,8 @@ with tab3:
             randomly_kept_rows.append(random_index)
         final = datevalue_df.loc[randomly_kept_rows]
         unique_value_list = final['VALUE'].unique().tolist()
-        final_df = output_data[output_data['VALUE'].isin(unique_value_list)]
-        final_df = final_df.reset_index()
+        final_df = outputfilter_df[outputfilter_df['VALUE'].isin(unique_value_list)]
+        
 
         datevalue_df    
         final
