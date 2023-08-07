@@ -181,20 +181,32 @@ with tab3:
         output_data['TRUCK_BRAND_NAME'] = output_data['TRUCK_BRAND_NAME'].replace({v: k for k, v in truckb_mapping.items()})
         output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
 
+        bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
+        bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
+        bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'] == 2021]
+        bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'].dt.year == 2021]
+
+        output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
+        bundlewo2022_df['DATE_MONTH'] = bundlewo2022_df['DATE'].dt.strftime('%m-%d')
+        matching_dates = bundlewo2022_df['DATE_MONTH'].unique()
+        filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
+        st.write(filtered_output)
+        st.write(bundle2021_df)
+
     
         st.write(output_data)
 
-    bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
-    bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
-    bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'] == 2021]
-    bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'].dt.year == 2021]
-    st.write(bundle2021_df)
+    # bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
+    # bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
+    # bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'] == 2021]
+    # bundle2021_df = bundlewo2022_df[bundlewo2022_df['DATE'].dt.year == 2021]
+    # st.write(bundle2021_df)
 
-    output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
-    bundlewo2022_df['DATE_MONTH'] = bundlewo2022_df['DATE'].dt.strftime('%m-%d')
-    matching_dates = bundlewo2022_df['DATE_MONTH'].unique()
-    filtered_output = output_data[output_data['month_day'].isin(matching_dates)].copy()
-    st.write(filtered_output)
+    # output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
+    # bundlewo2022_df['DATE_MONTH'] = bundlewo2022_df['DATE'].dt.strftime('%m-%d')
+    # matching_dates = bundlewo2022_df['DATE_MONTH'].unique()
+    # filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
+    # st.write(filtered_output)
 
 
         
