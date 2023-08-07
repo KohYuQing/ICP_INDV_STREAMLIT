@@ -162,7 +162,7 @@ with tab3:
     filterednot2022_df = filterednot2022_df[filterednot2022_df['VALUE'] != 0]
     filterednot2022_df= pd.DataFrame(filterednot2022_df)
     filterednot2022_df = filterednot2022_df[filterednot2022_df['DATE'].dt.year == 2021]
-    filterednot2022_df['TOTAL_SALES'] = filterednot2022_df['TOTAL_QTY_SOLD'] * filterednot2022_df['TOTAL_SALES_PER_ITEM']
+    # filterednot2022_df['TOTAL_SALES'] = filterednot2022_df['TOTAL_QTY_SOLD'] * filterednot2022_df['TOTAL_SALES_PER_ITEM']
     filterednot2022_df.reset_index(drop=True, inplace=True)
     
     
@@ -188,7 +188,6 @@ with tab3:
         output_data = pd.concat([qty_df, output_data], axis=1)
         output_data = pd.concat([date_df, output_data], axis=1)
         output_data['PREDICTED_PRICE'] = prediction 
-        output_data['TOTAL_SALES'] = output_data['PREDICTED_PRICE'] * output_data['TOTAL_QTY_SOLD']
         output_data['SEASON'] = output_data['SEASON'].replace({v: k for k, v in season_mapping.items()})
         output_data['CITY'] = output_data['CITY'].replace({v: k for k, v in city_mapping.items()})
         output_data['ITEM_CATEGORY'] = output_data['ITEM_CATEGORY'].replace({v: k for k, v in itemcat_mapping.items()})
@@ -246,11 +245,11 @@ with tab3:
         st.write(final_df)
         st.write(filterednot2022_df)
 
-        final_df['TOTAL_SALES'] = final_df['TOTAL_SALES'].astype(float)
-        filterednot2022_df['TOTAL_SALES'] = filterednot2022_df['TOTAL_SALES'].astype(float)
+        final_df['PREDICTED_PRICE'] = final_df['PREDICTED_PRICE'].astype(float)
+        filterednot2022_df['TOTAL_SALES_PER_ITEM'] = filterednot2022_df['TOTAL_SALES_PER_ITEM'].astype(float)
 
         column_sum_2021 = filterednot2022_df['TOTAL_SALES'].sum()
-        column_sum_2022 = final_df['TOTAL_SALES'].sum()
+        column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
         # Display the sum
         st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
         st.write('The predicted price for 2022 ${:.2f}.'.format(column_sum_2022))
