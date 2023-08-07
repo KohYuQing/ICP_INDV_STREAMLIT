@@ -154,7 +154,6 @@ with tab3:
     woy2022_df['DATE_MONTH'] = woy2022_df['DATE_MONTH'].map(value_mapping)
     woy2022_df['DATE_MONTH'] = woy2022_df['DATE_MONTH'].astype(object)
     filterednot2022_df = woy2022_df.loc[
-    (woy2022_df['DATE_MONTH'] == month_input) &
     (woy2022_df['TRUCK_BRAND_NAME'] == truckb_input) &
     (woy2022_df['CITY'] == city_input)]
 
