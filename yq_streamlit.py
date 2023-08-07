@@ -325,8 +325,21 @@ with tab3:
     bundle_df['MENU_TYPE'] = bundle_df['MENU_TYPE'].map(menut_mapping)
     bundle_df['TRUCK_BRAND_NAME'] = bundle_df['TRUCK_BRAND_NAME'].map(truckb_mapping)
     bundle_df['MENU_ITEM_NAME'] = bundle_df['MENU_ITEM_NAME'].map(menuitem_mapping)
+    column_names = []
+    column_names = bundle_df.columns.tolist()
     if st.button('Generate Records'):
         st.write(bundle_df)
+    if st.button('Predict Price'):
+        input_data = column_names
+        input_df = bundle_df
+        prediction = xgbr_gs.predict(input_df)
+        output_data = pd.DataFrame(input_data, columns = input_df.columns)
+        output_data['PREDICTED_PRICE'] = prediction 
+        st.write(output_data)
+
+        
+            
+
     
 
 
