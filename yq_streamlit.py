@@ -140,7 +140,7 @@ with tab3:
         st.write(bundle_df)
 
     qty_df = bundle_df['TOTAL_QTY_SOLD']
-    bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD'], axis = 1)
+    bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
     
 
     ## map values to put in dataframe
