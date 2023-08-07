@@ -112,6 +112,9 @@ with tab3:
     month_labels = list(month_mapping.keys())
     month_values = list(month_mapping.values())
 
+    value_mapping = {'01': 1, '02': 2, '03': 3, '04': 4, '05': 5, '06': 6, '07': 7, '08': 8, '09': 9, '10': 10, '11': 11, '12': 12}
+    
+
 
     def get_CITY():
         city = st.selectbox('Select a City', city_labels)
@@ -170,7 +173,9 @@ with tab3:
         output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
         output_data['DATE'] = pd.to_datetime(output_data['DATE'])
         output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m')
-        output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(str).str.lstrip('0')
+        output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(str)
+        output_data['DATE_MONTH'] = output_data['DATE_MONTH'].map(value_mapping)
+        
         filtered_month = []
         for index, row in output_data.iterrows():
             if (month_input in row['DATE_MONTH']):
