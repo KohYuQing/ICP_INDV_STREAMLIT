@@ -120,24 +120,28 @@ with tab3:
     truckb_input = get_truckb()
     truckb_int = truckb_mapping[truckb_input]
 
-    def get_season():
-        season = st.selectbox('Select a season', season_labels)
-        return season
-    season_input = get_season()
-    season_int = season_mapping[season_input]
+    # def get_season():
+    #     season = st.selectbox('Select a season', season_labels)
+    #     return season
+    # season_input = get_season()
+    # season_int = season_mapping[season_input]
     
 
 
 
     filtered_rows = []
     for index, row in maintable.iterrows():
-        if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
+        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY']):
             filtered_rows.append(row)
+        # if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
+        #     filtered_rows.append(row)
 
     woy2022_rows = []
     for index, row in woy2022_df.iterrows():
-        if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
+        if (truckb_input in row['TRUCK_BRAND_NAME']) & (city_input in row['CITY']):
             woy2022_rows.append(row)
+        # if (truckb_input in row['TRUCK_BRAND_NAME']) & (season_input in row['SEASON'] )& (city_input in row['CITY']):
+        #     woy2022_rows.append(row)
     
     filtered_df = pd.DataFrame(filtered_rows, columns= maintable.columns)
     bundle_df = filtered_df[filtered_df['VALUE'] != 0]
