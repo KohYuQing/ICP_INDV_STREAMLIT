@@ -177,15 +177,21 @@ with tab3:
         output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(str)
         output_data['DATE_MONTH'] = output_data['DATE_MONTH'].map(value_mapping)
         output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(object)
+
+        output_data = output_data.loc[output_data['DATE_MONTH'] == month_int]
         
-        filtered_month = []
-        month_input_str = str(month_input)
-        matching_rows = []
-        for index, row in output_data.iterrows():
-            if month_input_str in row['DATE_MONTH']:
-                matching_rows.append(row)
-        output_data = pd.DataFrame(filtered_month)
-        output_data.reset_index(drop=True, inplace=True)
+
+
+
+
+        # filtered_month = []
+        # month_input_str = str(month_input)
+        # matching_rows = []
+        # for index, row in output_data.iterrows():
+        #     if month_input_str in row['DATE_MONTH']:
+        #         matching_rows.append(row)
+        # output_data = pd.DataFrame(matching_rows)
+        # output_data.reset_index(drop=True, inplace=True)
         
         
 
