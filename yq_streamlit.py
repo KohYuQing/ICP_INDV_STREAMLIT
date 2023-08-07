@@ -223,6 +223,14 @@ with tab3:
         final_df = outputfilter_df[outputfilter_df['VALUE'].isin(unique_value_list)]
         final_df = pd.DataFrame(final_df, columns = output_data.columns)
         filterednot2022_df = pd.DataFrame(filterednot2022_df, columns = woy2022_df.columns)
+
+        rows, columns = final_df.shape
+        rows
+        columns
+        rows, columns = filterednot2022_df.shape
+        rows
+        columns
+
         
 
         
