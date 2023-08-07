@@ -219,20 +219,12 @@ with tab3:
         unique_date_list = datevalue_df['DATE'].unique().tolist()
         randomly_kept_rows = []
         for date, group in datevalue_df.groupby('DATE'):
-            random_index = random.choice(group.index)
+            random_index = group['PREDICTED_PRICE'].idxmax()
             randomly_kept_rows.append(random_index)
         final = datevalue_df.loc[randomly_kept_rows]
         unique_value_list = final['VALUE'].unique().tolist()
         final_df = outputfilter_df[outputfilter_df['VALUE'].isin(unique_value_list)]
         final_df = pd.DataFrame(final_df, columns = output_data.columns)
-        
-
-        rows, columns = final_df.shape
-        rows
-        columns
-        rows, columns = filterednot2022_df.shape
-        rows
-        columns
 
         
 
@@ -256,13 +248,10 @@ with tab3:
         st.write(final_df)
         st.write(filter2021)
         
-        final_df['PREDICTED_PRICE'].dtype
-        filterednot2022_df['TOTAL_SALES_PER_ITEM'].dtype
+
 
         final_df['PREDICTED_PRICE'] = final_df['PREDICTED_PRICE'].astype(float)
         filter2021['TOTAL_SALES_PER_ITEM'] = filter2021['TOTAL_SALES_PER_ITEM'].astype(float)
-        final_df['PREDICTED_PRICE'].dtype
-        filterednot2022_df['TOTAL_SALES_PER_ITEM'].dtype
 
         column_sum_2021 = filter2021['TOTAL_SALES_PER_ITEM'].sum()
         column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
