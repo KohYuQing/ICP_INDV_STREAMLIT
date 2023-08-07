@@ -212,7 +212,7 @@ with tab3:
         for index, row in bundle2021_df.iterrows():
             if (month_input in row['DATE_MONTH']) :
                 filtered_month.append(row)
-        filtered_month = pd.DataFrame(filtered_month, columns= output_data.columns)
+        filtered_month = pd.DataFrame(filtered_month, columns= bundle2021_df.columns)
 
         
         
