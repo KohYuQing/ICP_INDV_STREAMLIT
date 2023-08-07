@@ -248,7 +248,7 @@ with tab3:
         final_df['PREDICTED_PRICE'] = final_df['PREDICTED_PRICE'].astype(float)
         filterednot2022_df['TOTAL_SALES_PER_ITEM'] = filterednot2022_df['TOTAL_SALES_PER_ITEM'].astype(float)
 
-        column_sum_2021 = filterednot2022_df['TOTAL_SALES'].sum()
+        column_sum_2021 = filterednot2022_df['TOTAL_SALES_PER_ITEM'].sum()
         column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
         # Display the sum
         st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
