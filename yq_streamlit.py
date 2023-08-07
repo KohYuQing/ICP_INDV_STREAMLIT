@@ -182,6 +182,10 @@ with tab3:
         #         filtered_month.append(row)
         # output_data = pd.DataFrame(filtered_month)
         # output_data.reset_index(drop=True, inplace=True)
+        date_column_dtype = output_data['DATE_MONTH'].dtype
+        ds_column_dtype = output_data['MENU_ITEM_NAME'].dtype
+        st.write(date_column_dtype)
+        st.write(ds_column_dtype)
         st.write(output_data)
         
     # woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
