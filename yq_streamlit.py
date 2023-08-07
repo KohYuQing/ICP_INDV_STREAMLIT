@@ -264,17 +264,17 @@ with tab3:
         final_df['PREDICTED_PRICE'].dtype
         filterednot2022_df['TOTAL_SALES_PER_ITEM'].dtype
 
-        # column_sum_2021 = filterednot2022_df['TOTAL_SALES_PER_ITEM'].sum()
-        # column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
+        column_sum_2021 = filter2021['TOTAL_SALES_PER_ITEM'].sum()
+        column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
 
-        column_sum_2021 = 0
-        column_sum_2022 = 0
+        # column_sum_2021 = 0
+        # column_sum_2022 = 0
 
-        for value in filter2021['TOTAL_SALES_PER_ITEM']:
-            column_sum_2021 += value
-            value
-        for value in final_df['PREDICTED_PRICE']:
-            column_sum_2022 += value
+        # for value in filter2021['TOTAL_SALES_PER_ITEM']:
+        #     column_sum_2021 += value
+        #     value
+        # for value in final_df['PREDICTED_PRICE']:
+        #     column_sum_2022 += value
         # Display the sum
         st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
         st.write('The predicted price for 2022 ${:.2f}.'.format(column_sum_2022))
