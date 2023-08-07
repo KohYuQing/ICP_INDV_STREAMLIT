@@ -222,10 +222,7 @@ with tab3:
         unique_value_list = final['VALUE'].unique().tolist()
         final_df = outputfilter_df[outputfilter_df['VALUE'].isin(unique_value_list)]
         
-
-        datevalue_df    
-        final
-        final_df
+        
 
         
 
@@ -244,11 +241,11 @@ with tab3:
         
         
 
-        st.write(outputfilter_df)
+        st.write(final_df)
         st.write(filterednot2022_df)
 
         column_sum_2021 = filterednot2022_df['TOTAL_SALES'].sum()
-        column_sum_2022 = outputfilter_df['TOTAL_SALES'].sum()
+        column_sum_2022 = final_df['TOTAL_SALES'].sum()
         # Display the sum
         st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
         st.write('The predicted price for 2022 ${:.2f}.'.format(column_sum_2022))
