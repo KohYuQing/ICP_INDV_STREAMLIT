@@ -138,7 +138,7 @@ with tab3:
     # season_int = season_mapping[season_input]
     
     maintable['DATE'] = pd.to_datetime(maintable['DATE'])
-    maintable['DATE_MONTH'] = maintable['DATE_MONTH'].dt.strftime('%m')
+    maintable['DATE_MONTH'] = maintable['DATE'].dt.strftime('%m')
 
     filtered_rows = []
     for index, row in maintable.iterrows():
