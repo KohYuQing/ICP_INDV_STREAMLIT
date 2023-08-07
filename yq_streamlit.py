@@ -150,6 +150,7 @@ with tab3:
     bundlewo2022_df.reset_index(drop=True, inplace=True)
 
     qty_df = bundle_df['TOTAL_QTY_SOLD']
+    date_df = bundle_df['DATE']
     bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
     
 
@@ -170,6 +171,7 @@ with tab3:
         prediction = xgbr_gs.predict(input_df)
         output_data = pd.DataFrame(input_df, columns = input_df.columns)
         output_data = pd.concat([qty_df, output_data], axis=1)
+        output_data = pd.concat([date_df, output_data], axis=1)
         output_data['PREDICTED_PRICE'] = prediction 
         output_data['TOTAL_SALES'] = output_data['PREDICTED_PRICE'] * output_data['TOTAL_QTY_SOLD']
         output_data['SEASON'] = output_data['SEASON'].replace({v: k for k, v in season_mapping.items()})
