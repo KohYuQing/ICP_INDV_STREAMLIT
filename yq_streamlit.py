@@ -187,14 +187,15 @@ with tab3:
         
         output_data['DATE'] = pd.to_datetime(output_data['DATE'])
 
-        # output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
-        # bundle2021_df['DATE_MONTH'] = bundle2021_df['DATE'].dt.strftime('%m-%d')
-        # matching_dates = bundle2021_df['DATE_MONTH'].unique()
-        # filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
+        output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
+        bundle2021_df['DATE_MONTH'] = bundle2021_df['DATE'].dt.strftime('%m-%d')
+        matching_dates = bundle2021_df['DATE_MONTH'].unique()
+        filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
 
         # st.write(filtered_output)
         st.write(bundle2021_df)
         st.write(output_data)
+        st.write(filtered_output)
 
     # bundlewo2022_df['TOTAL_SALES'] = bundlewo2022_df['TOTAL_SALES_PER_ITEM'] * bundlewo2022_df['TOTAL_QTY_SOLD']
     # bundlewo2022_df['DATE'] = pd.to_datetime(bundlewo2022_df['DATE'])
