@@ -200,17 +200,13 @@ with tab3:
         output_data = output_data.loc[output_data['DATE_MONTH'] == month_int]
 
         unique_count = filterednot2022_df['DATE'].nunique()
-        unique_count
         unique_output_date_list = output_data['DATE'].unique().tolist()
         grouped_data = output_data.groupby('DATE')['TOTAL_SALES'].sum()
         grouped_data = pd.DataFrame(grouped_data)
         grouped_data = grouped_data.sort_values(by='TOTAL_SALES', ascending=False)
-        grouped_data
         date_list = []
         date_list = grouped_data.index.tolist()
-        date_list
         unique_dates = date_list[:unique_count]
-        unique_dates
         outputfilter_df = output_data[output_data['DATE'].isin(unique_dates)]
 
         
@@ -230,6 +226,12 @@ with tab3:
 
         st.write(outputfilter_df)
         st.write(filterednot2022_df)
+
+        column_sum_2021 = filterednot2022_df['TOTAL_SALES'].sum()
+        column_sum_2022 = outputfilter_df['TOTAL_SALES'].sum()
+        # Display the sum
+        st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
+        st.write('The predicted price for 2022 ${:.2f}.'.format(column_sum_2022))
         
     # woy2022_df['DATE'] = pd.to_datetime(woy2022_df['DATE'])
     # woy2022_df['DATE_MONTH'] = woy2022_df['DATE'].dt.strftime('%m')
