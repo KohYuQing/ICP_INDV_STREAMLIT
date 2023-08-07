@@ -207,9 +207,13 @@ with tab3:
         grouped_data = grouped_data.sort_values(by='TOTAL_SALES', ascending=False)
         grouped_data
         date_list = []
+        unique_dates = []
         date_list = grouped_data.index.tolist()
-        
         date_list
+        unique_dates = date_list[:unique_count].tolist()
+        unique_dates
+
+        
 
 
 
