@@ -222,7 +222,7 @@ with tab3:
         unique_value_list = final['VALUE'].unique().tolist()
         final_df = outputfilter_df[outputfilter_df['VALUE'].isin(unique_value_list)]
         final_df = pd.DataFrame(final_df, columns = output_data.columns)
-        
+        filterednot2022_df = pd.DataFrame(filterednot2022_df, columns = woy2022_df.columns)
         
 
         
@@ -244,8 +244,7 @@ with tab3:
 
         st.write(final_df)
         st.write(filterednot2022_df)
-        filterednot2022_df.shape()
-        final_df.shape()
+        
         final_df['PREDICTED_PRICE'].dtype
         filterednot2022_df['TOTAL_SALES_PER_ITEM'].dtype
 
