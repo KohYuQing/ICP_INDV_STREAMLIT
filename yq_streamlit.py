@@ -136,6 +136,8 @@ with tab3:
     bundle_df = filtered_df[filtered_df['VALUE'] != 0]
     bundle_df = pd.DataFrame(bundle_df)
     bundle_df.reset_index(drop=True, inplace=True)
+    if st.button('random'):
+        st.write(bundle_df)
 
     qty_df = bundle_df['TOTAL_QTY_SOLD']
     bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD'], axis = 1)
