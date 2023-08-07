@@ -212,7 +212,7 @@ with tab3:
         for index, row in bundle2021_df.iterrows():
             if (month_input in row['DATE_MONTH']) :
                 filtered_month.append(row)
-        filtered_month = pd.DataFrame(filtered_month, columns= bundle2021_df.columns)
+        bundle2021_df_month = pd.DataFrame(filtered_month, columns= bundle2021_df.columns)
 
         
         
@@ -228,8 +228,8 @@ with tab3:
         # filtered_output.reset_index(drop=True, inplace=True)
 
         # st.write(filtered_output)
-        st.write(bundle2021_df)
-        st.write(output_month)
+        st.write(bundle2021_df_month)
+        st.write(filtered_month)
         # st.write(filtered_output)
         column_sum_2021 = bundle2021_df['TOTAL_SALES'].sum()
         column_sum_2022 = output_data['TOTAL_SALES'].sum()
