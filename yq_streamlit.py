@@ -187,8 +187,8 @@ with tab3:
         output_data['DATE'] = pd.to_datetime(output_data['DATE'])
 
         output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m-%d')
-        bundlewo2022_df['DATE_MONTH'] = bundlewo2022_df['DATE'].dt.strftime('%m-%d')
-        matching_dates = bundlewo2022_df['DATE_MONTH'].unique()
+        bundle2021_df['DATE_MONTH'] = bundle2021_df['DATE'].dt.strftime('%m-%d')
+        matching_dates = bundle2021_df['DATE_MONTH'].unique()
         filtered_output = output_data[output_data['DATE_MONTH'].isin(matching_dates)].copy()
         st.write(filtered_output)
         st.write(bundle2021_df)
