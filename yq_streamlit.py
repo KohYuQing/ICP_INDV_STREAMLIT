@@ -107,7 +107,7 @@ with tab3:
     menuitem_reverse_mapping = {v: k for k, v in menuitem_mapping.items()}
     menuitem_labels = list(menuitem_mapping.keys())
 
-    month_mapping = {'Janurary': '01', 'Feburary': '02', "March": '03', 'April': '04', 'May': '05', 'June': '06', 'July': '07', 'August': '08', 'September': '09', 'October': 10, 'November': 11, 'December': 12}
+    month_mapping = {'Janurary': 1, 'Feburary': 2, "March": 3, 'April': 4, 'May': 5, 'June': 6, 'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12}
     month_reverse_mapping = {v: k for k, v in month_mapping.items()}
     month_labels = list(month_mapping.keys())
     month_values = list(month_mapping.values())
@@ -200,6 +200,13 @@ with tab3:
         output_data['MENU_ITEM_NAME'] = output_data['MENU_ITEM_NAME'].replace({v: k for k, v in menuitem_mapping.items()})
         output_data['DATE'] = pd.to_datetime(output_data['DATE'])
         output_data['DATE_MONTH'] = output_data['DATE'].dt.strftime('%m')
+        output_month = []
+        bundle2021_df['DATE_MONTH'] = bundle2021_df['DATE_MONTH'].astype(int)
+        output_data['DATE_MONTH'] = output_data['DATE_MONTH'].astype(int)
+        for index, row in bundle2021_df.iterrows():
+            if (month_input in output_data['DATE_MONTH']) :
+                output_month.append(row)
+        filtered_month = pd.DataFrame(output_month, columns= output_data.columns)
 
         filtered_month = []
         for index, row in bundle2021_df.iterrows():
@@ -222,7 +229,7 @@ with tab3:
 
         # st.write(filtered_output)
         st.write(bundle2021_df)
-        st.write(filtered_month)
+        st.write(output_month)
         # st.write(filtered_output)
         column_sum_2021 = bundle2021_df['TOTAL_SALES'].sum()
         column_sum_2022 = output_data['TOTAL_SALES'].sum()
