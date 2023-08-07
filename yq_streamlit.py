@@ -210,7 +210,7 @@ with tab3:
         unique_dates = []
         date_list = grouped_data.index.tolist()
         date_list
-        unique_dates = date_list[:unique_count].tolist()
+        unique_dates = date_list[:unique_count]
         unique_dates
 
         
