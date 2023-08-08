@@ -260,10 +260,10 @@ with tab3:
 
 
             
-            
-
-            st.write(final_df)
+            st.write('Sales of 2021 (Pre-Bundle)')
             st.write(filter2021)
+            st.write('Prediction of 2022 Bundle Sales')
+            st.write(final_df)
             
 
 
@@ -274,8 +274,8 @@ with tab3:
             column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
 
 
-            st.write('The predicted price for 2021 ${:.2f}.'.format(column_sum_2021))
-            st.write('The predicted price for 2022 ${:.2f}.'.format(column_sum_2022))
+            st.success('The total sales for 2021 ${:.2f}.'.format(column_sum_2021))
+            st.write('The predicted sales with bundle pricing for 2022 ${:.2f}.'.format(column_sum_2022))
         
 
     
