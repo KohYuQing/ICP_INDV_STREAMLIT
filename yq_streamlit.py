@@ -25,7 +25,7 @@ with tab2:
   #Hector/Shahid
   st.write('hello')
 with tab3:
-    st.title('Bundling of Items 🍔🍦🥤')
+    st.title('🌭🥤Bundling of Items 🍔🍦')
     @st.cache_data
     def load_data():
     # First load the original airbnb listtings dataset
