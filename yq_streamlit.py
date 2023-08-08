@@ -28,8 +28,8 @@ with tab3:
     st.title('🌭🥤Bundling of Items 🍔🍦')
     st.markdown('________________________________________________')
     st.markdown('This web page displays predictions for the total sales of bundled items. Bundles consist of the top-selling  item from main item category paired with the lowest-selling item from another item category. The aim is to compare 2022 bundled item sales with those of 2021 to determine if there is a sales increase due to item bundling.')
-    st.markdown()
-    st.markdown()
+    st.markdown("&nbsp;")
+    st.markdown("&nbsp;")
     @st.cache_data
     def load_data():
     # First load the original airbnb listtings dataset
