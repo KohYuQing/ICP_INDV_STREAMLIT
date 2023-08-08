@@ -275,7 +275,7 @@ with tab3:
 
 
             st.success('The total sales for 2021 ${:.2f}.'.format(column_sum_2021))
-            st.write('The predicted sales with bundle pricing for 2022 ${:.2f}.'.format(column_sum_2022))
+            st.success('The predicted sales with bundle pricing for 2022 ${:.2f}.'.format(column_sum_2022))
         
 
     
