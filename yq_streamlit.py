@@ -166,9 +166,12 @@ with tab3:
     filtered_df_list = filtered_df_another['DATE_MONTH'].unique().tolist()
 
     concat_list = [value for value in filtered_df_list if value in filteredw2022_df_list]
+    concat_list
     month_list = [1,2,3,4,5,6,7,8,9,10,11,12]
     new_list = [m for m in month_list if m not in concat_list]
+    new_list
     month_mapping = {key: value for key, value in month_mapping.items() if value not in new_list}
+    month_mapping
     if not month_mapping:
         st.write('NO RECORDS! CHOOSE AGAIN')
     else:
