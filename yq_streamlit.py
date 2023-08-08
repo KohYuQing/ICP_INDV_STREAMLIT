@@ -207,13 +207,6 @@ with tab3:
         filterednot2022_df = filterednot2022_df[filterednot2022_df['DATE'].dt.year == 2021]
         filter2021 = filterednot2022_df
         filter2021.index = range(len(filter2021))
-        # filterednot2022_df['TOTAL_SALES'] = filterednot2022_df['TOTAL_QTY_SOLD'] * filterednot2022_df['TOTAL_SALES_PER_ITEM']
-        # filterednot2022_df.reset_index(drop=True, inplace=True)
-
-        
-        
-
-
         qty_df = bundle_df['TOTAL_QTY_SOLD']
         date_df = bundle_df['DATE']
         bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
@@ -283,18 +276,6 @@ with tab3:
 
             st.success('The total sales for 2021: ${:.2f}.'.format(column_sum_2021))
             st.success('The predicted sales with bundle pricing for 2022: ${:.2f}.'.format(column_sum_2022))
-        
-
-    
-    
-
-
-        
-        
-            
-
-    
-
 
   #Tab 3 code here
 
