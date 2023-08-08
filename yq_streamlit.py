@@ -252,6 +252,8 @@ with tab3:
             unique_dates = date_list[:unique_count]
             final_df = output_data[output_data['DATE'].isin(unique_dates)]
             final_df = final_df.drop(columns=['discount_10%','DATE_MONTH'])
+            final_df = final_df.reset_index(drop = True)
+            
             filter2021 = filter2021.drop(columns=['discount_10%','DATE_MONTH','TRUCK_ID'])
             filter2021.rename(columns={'TOTAL_SALES_PER_ITEM': 'PREDICTED_PRICE'}, inplace=True)
             filter2021 = filter2021.reindex(columns=final_df.columns, fill_value=None)
