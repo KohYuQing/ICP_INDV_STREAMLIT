@@ -26,6 +26,7 @@ with tab2:
   st.write('hello')
 with tab3:
     st.title('🌭🥤Bundling of Items 🍔🍦')
+    st.markdown('________________________________________________')
     @st.cache_data
     def load_data():
     # First load the original airbnb listtings dataset
@@ -133,17 +134,6 @@ with tab3:
     truckb_int = truckb_mapping[truckb_input]
 
     
-
-
-
-
-    
-
-
-    
-    
-    
-
     filtered_rows = []
     filteredw2022_rows = []
     for index, row in maintable.iterrows():
