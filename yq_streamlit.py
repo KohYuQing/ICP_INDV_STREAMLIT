@@ -157,6 +157,7 @@ with tab3:
     filteredw2022_rows['DATE_MONTH'] = filteredw2022_rows['DATE_MONTH'].astype(str)
     filteredw2022_rows['DATE_MONTH'] = filteredw2022_rows['DATE_MONTH'].map(value_mapping)
     filteredw2022_df_list = filteredw2022_rows['DATE_MONTH'].unique().tolist()
+    filteredw2022_df_list
 
     # find unique months if month number not in dictionary then drop that value 
     filtered_df_another['DATE'] = pd.to_datetime(filtered_df['DATE'])
@@ -164,6 +165,7 @@ with tab3:
     filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE_MONTH'].astype(str)
     filtered_df_another['DATE_MONTH'] = filtered_df_another['DATE_MONTH'].map(value_mapping)
     filtered_df_list = filtered_df_another['DATE_MONTH'].unique().tolist()
+    filtered_df_list
 
     concat_list = [value for value in filtered_df_list if value in filteredw2022_df_list]
     concat_list
