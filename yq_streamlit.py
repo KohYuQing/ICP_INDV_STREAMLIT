@@ -76,8 +76,8 @@ with tab3:
     with open('scaler.pkl', 'rb') as file:
         scaler = joblib.load(file)
 
-    df = pd.read_csv('final_data_noscaler.csv')
-    total_sales = df[['TOTAL_SALES_PER_ITEM']]
+    
+    
 
 
     season_mapping = {'WINTER': 0, 'SPRING': 1, 'SUMMER': 2, 'AUTUMN': 3}
@@ -112,7 +112,7 @@ with tab3:
     menuitem_reverse_mapping = {v: k for k, v in menuitem_mapping.items()}
     menuitem_labels = list(menuitem_mapping.keys())
 
-    month_mapping = {'Janurary': 1, 'Feburary': 2, "March": 3, 'April': 4, 'May': 5, 'June': 6, 'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12}
+    month_mapping = {'January': 1, 'February': 2, "March": 3, 'April': 4, 'May': 5, 'June': 6, 'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12}
     month_reverse_mapping = {v: k for k, v in month_mapping.items()}
     month_labels = list(month_mapping.keys())
     month_values = list(month_mapping.values())
