@@ -16,7 +16,7 @@ st.set_page_config(page_title='INVEMP Tasty Bytes Group 5', page_icon='🍖🍕�
 st.sidebar.title("INVEMP: Inventory/Warehouse Management & Prediction on Sales per Menu Item")
 st.sidebar.markdown("This web app allows you to explore the internal inventory of Tasty Bytes. You can explore these functions in the web app (Description of Page)")
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(['Prediction A', 'Prediction B', 'Prediction C', 'Prediction D', 'Prediction E'])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(['Prediction A', 'Prediction B', 'Bundled Items Sales Analysis', 'Prediction D', 'Prediction E'])
 
 with tab1:
   st.write('hello')
