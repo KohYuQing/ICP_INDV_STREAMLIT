@@ -276,8 +276,8 @@ with tab3:
             column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
 
 
-            st.success('The total sales for 2021 ${:.2f}.'.format(column_sum_2021))
-            st.success('The predicted sales with bundle pricing for 2022 ${:.2f}.'.format(column_sum_2022))
+            st.success('The total sales for 2021: ${:.2f}.'.format(column_sum_2021))
+            st.success('The predicted sales with bundle pricing for 2022: ${:.2f}.'.format(column_sum_2022))
         
 
     
