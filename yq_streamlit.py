@@ -65,6 +65,7 @@ with tab3:
     noscale = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/final_data_noscaler.zip"
     woy2022_df = read_csv_from_zipped_github(github_url_woy2022)
     only2021_df = read_csv_from_zipped_github(github_url_woy2022)
+    noscale = read_csv_from_zipped_github(noscale)
 
 
     with open('xgbr_gs.pkl', 'rb') as file:
