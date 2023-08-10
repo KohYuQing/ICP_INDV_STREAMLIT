@@ -301,10 +301,10 @@ with tab3:
             st.write("Number of rows in DataFrame:", len(random_rows))
 
 
-            predicted_random = random_rows['PREDICTED_PRICE'].sum()
+            
             
 
-            st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_random))
+            st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2022))
             st.write("Overall Predicted Sales for 2021: ${:.2f}.".format(predicted_2021))
 
 
