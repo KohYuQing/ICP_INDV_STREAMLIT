@@ -297,10 +297,12 @@ with tab3:
 
             len2021 = len(only2021_df) 
 
-            # sorted_df = cal_output.sort_values(by='PREDICTED_PRICE', ascending=False)
+            sorted_df = cal_output.sort_values(by='PREDICTED_PRICE', ascending=False)
+            top_n_rows = sorted_df.iloc[:len2021]
 
-            # random_rows = cal_output.sample(n= len2021, replace = True )
-            top_n_rows = cal_output.nlargest(len2021, 'PREDICTED_PRICE')
+            
+
+            
 
 
             st.write(top_n_rows)
