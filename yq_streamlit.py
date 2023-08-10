@@ -290,7 +290,11 @@ with tab3:
             else:
                 st.error('Percentage Decrease: {:.2f}%.'.format(percentage))
             
+<<<<<<< HEAD
+            predicted_202sds = output_data['PREDICTED_PRICE'].sum()
+=======
             predicted_202df = output_data['PREDICTED_PRICE'].sum()
+>>>>>>> 77b992b7a47951cbfc04f4aa168ae8b43fd75e17
 
             predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
 
@@ -302,8 +306,13 @@ with tab3:
             st.write(random_rows)
             st.write("Number of rows in DataFrame:", len(random_rows))
 
+            predicted_2022 = random_rows['PREDICTED_PRICE'].sum()
 
+<<<<<<< HEAD
+
+=======
             predicted_2022 = cal_output['PREDICTED_PRICE'].sum()
+>>>>>>> 77b992b7a47951cbfc04f4aa168ae8b43fd75e17
             
 
             st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2022))
