@@ -226,6 +226,7 @@ with tab3:
             input_df = bundle_df
             prediction = xgbr_gs.predict(input_df)
             output_data = pd.DataFrame(input_df, columns = input_df.columns)
+            cal_output = output_data
             output_data = pd.concat([qty_df, output_data], axis=1)
             output_data = pd.concat([date_df, output_data], axis=1)
             output_data['PREDICTED_PRICE'] = prediction 
@@ -292,11 +293,11 @@ with tab3:
 
             predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
 
-            len2021 = len(only2021_df) + 250
+            len2021 = len(only2021_df) 
 
             
 
-            random_rows = output_data.sample(n= len2021, replace = True )
+            random_rows = cal_output.sample(n= len2021, replace = True )
             st.write("Number of rows in DataFrame:", len(random_rows))
 
 
