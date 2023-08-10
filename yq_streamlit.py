@@ -301,18 +301,18 @@ with tab3:
             hello = len(woy2022_df)
 
             sorted_df = noscale.sort_values(by='PREDICTED_PRICE', ascending=False)
-            
-            top_n_rows = sorted_df.iloc[:len(only2021_df)]
-            len1 =  len(top_n_rows)
+            random_rows = noscale.sample(n=len2021)
+            # top_n_rows = sorted_df.iloc[:len(only2021_df)]
+            # len1 =  len(top_n_rows)
 
             
 
             
 
 
-            st.write(len1)
+            st.write(random_rows)
             st.write(hello)
-            st.write("Number of rows in DataFrame:", len(top_n_rows))
+            st.write("Number of rows in DataFrame:", len(random_rows))
 
             predicted_2022 = top_n_rows['PREDICTED_PRICE'].sum()
 
