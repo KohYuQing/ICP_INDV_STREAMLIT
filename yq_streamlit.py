@@ -298,6 +298,7 @@ with tab3:
             predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
 
             len2021 = len(only2021_df) 
+            hello = len(woy2022_df)
 
             sorted_df = noscale.sort_values(by='PREDICTED_PRICE', ascending=False)
             
@@ -310,6 +311,7 @@ with tab3:
 
 
             st.write(len1)
+            st.write(hello)
             st.write("Number of rows in DataFrame:", len(top_n_rows))
 
             predicted_2022 = top_n_rows['PREDICTED_PRICE'].sum()
