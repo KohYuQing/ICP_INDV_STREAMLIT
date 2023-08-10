@@ -298,12 +298,12 @@ with tab3:
 
             predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
 
-            len2021 = len(only2021_df) -5000
+            len2021 = len(only2021_df) -7500
             hello = len(woy2022_df)
 
             sorted_df = noscale.sort_values(by='PREDICTED_PRICE', ascending=False)
             random_rows = noscale.sample(n=len2021)
-            top_n_rows = sorted_df.iloc[:5000]
+            top_n_rows = sorted_df.iloc[:7500]
 
             concatenated_df = pd.concat([random_rows, top_n_rows])
             
