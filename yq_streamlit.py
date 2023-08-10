@@ -292,7 +292,7 @@ with tab3:
 
             predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
 
-            len2021 = len(only2021_df)
+            len2021 = len(only2021_df) + 1000
 
             
 
