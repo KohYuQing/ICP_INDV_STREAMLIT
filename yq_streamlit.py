@@ -212,6 +212,7 @@ with tab3:
         date_df = bundle_df['DATE']
         bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
         main_drop = maintable.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
+        noscale = noscale.drop(['TOTAL_SALES_PER_ITEM'], axis = 1)
         ## map values to put in dataframe
         bundle_df['SEASON'] = bundle_df['SEASON'].map(season_mapping)
         bundle_df['CITY'] = bundle_df['CITY'].map(city_mapping)
