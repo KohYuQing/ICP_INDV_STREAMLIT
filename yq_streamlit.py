@@ -314,11 +314,11 @@ with tab3:
             predicted_2022 = concatenated_df['PREDICTED_PRICE'].sum()
             percentage1 = ((predicted_2022/predicted_2021) * 100) - 100
 
-            st.write('<span style="font-size: 18px; font-weight: bold;">Overall Sales Comparison</span>', unsafe_allow_html=True)
-            st.write('Predicted Sales for 2022')
+            st.write('<span style="font-size: 24px; font-weight: bold;">Overall Sales Comparison 💰💵</span>', unsafe_allow_html=True)
+            st.write('Predicted Sales for 2022:')
 
             st.success("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2022))
-            st.write('Predicted Sales for 2021')
+            st.write('Predicted Sales for 2021:')
             st.success("Overall Predicted Sales for 2021: ${:.2f}.".format(predicted_2021))
             if percentage1 > 0:
                 st.success('Percentage Increase: {:.2f}%.'.format(percentage1))
