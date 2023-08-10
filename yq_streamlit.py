@@ -297,13 +297,14 @@ with tab3:
 
             predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
 
-            len2021 = len(only2021_df) 
+            len2021 = len(only2021_df) -1000
             hello = len(woy2022_df)
 
             sorted_df = noscale.sort_values(by='PREDICTED_PRICE', ascending=False)
             random_rows = noscale.sample(n=len2021)
-            # top_n_rows = sorted_df.iloc[:len(only2021_df)]
+            top_n_rows = sorted_df.iloc[:1000]
             # len1 =  len(top_n_rows)
+            concatenated_df = pd.concat([random_rows, top_n_rows])
 
             
 
@@ -314,7 +315,7 @@ with tab3:
             st.write(hello)
             st.write("Number of rows in DataFrame:", len(random_rows))
 
-            predicted_2022 = random_rows['PREDICTED_PRICE'].sum()
+            predicted_2022 = concatenated_df['PREDICTED_PRICE'].sum()
 
             
 
