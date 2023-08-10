@@ -298,6 +298,7 @@ with tab3:
             
 
             random_rows = cal_output.sample(n= len2021, replace = True )
+            st.write(random_rows)
             st.write("Number of rows in DataFrame:", len(random_rows))
 
 
