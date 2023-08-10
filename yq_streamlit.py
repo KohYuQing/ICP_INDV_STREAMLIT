@@ -298,6 +298,7 @@ with tab3:
             len2021 = len(only2021_df) 
 
             sorted_df = cal_output.sort_values(by='PREDICTED_PRICE', ascending=False)
+            len1 =  len(sorted_df) 
             top_n_rows = sorted_df.iloc[:len(only2021_df)]
 
             
@@ -305,7 +306,7 @@ with tab3:
             
 
 
-            st.write(top_n_rows)
+            st.write(len1)
             st.write("Number of rows in DataFrame:", len(top_n_rows))
 
             predicted_2022 = top_n_rows['PREDICTED_PRICE'].sum()
