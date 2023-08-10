@@ -276,6 +276,14 @@ with tab3:
                 st.success('Percentage Increase: {:.2f}%.'.format(percentage))
             else:
                 st.error('Percentage Decrease: {:.2f}%.'.format(percentage))
+            
+            predicted_2022 = output_data['PREDICTED_PRICE'].sum()
+
+            predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
+
+            st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2022))
+            st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2021))
+
 
   #Tab 3 code here
 
