@@ -67,6 +67,8 @@ with tab3:
     with open('xgbr_gs.pkl', 'rb') as file:
         xgbr_gs = joblib.load(file)
 
+    st.write("Number of rows in DataFrame:", len(woy2022_df))
+
     
     
 
