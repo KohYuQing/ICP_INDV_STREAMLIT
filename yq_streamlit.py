@@ -294,7 +294,12 @@ with tab3:
 
             len2021 = len(only2021_df)
 
-            random_rows = output_data.sample(n=len2021)
+            
+
+            random_rows = output_data.sample(n= len2021, replace = True )
+            st.write("Number of rows in DataFrame:", len(random_rows))
+
+
             predicted_random = random_rows ['PREDICTED_PRICE'].sum()
             
 
