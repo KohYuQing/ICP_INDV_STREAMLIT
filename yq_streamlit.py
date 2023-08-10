@@ -316,10 +316,10 @@ with tab3:
             percentage1 = ((predicted_2022/predicted_2021) * 100) - 100
 
             st.write('<span style="font-size: 24px; font-weight: bold;">Overall Sales Comparison 💰💵</span>', unsafe_allow_html=True)
-            st.write('Predicted Sales for 2022:')
+            st.write('Total Predicted Sales for 2022:')
 
             st.success("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2022))
-            st.write('Predicted Sales for 2021:')
+            st.write('Total Sales for 2021:')
             st.success("Overall Predicted Sales for 2021: ${:.2f}.".format(predicted_2021))
             if percentage1 > 0:
                 st.write('Percentage Increase:')
