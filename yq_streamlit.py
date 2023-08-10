@@ -298,7 +298,7 @@ with tab3:
             len2021 = len(only2021_df) 
 
             sorted_df = cal_output.sort_values(by='PREDICTED_PRICE', ascending=False)
-            top_n_rows = sorted_df.iloc[:100]
+            top_n_rows = sorted_df.iloc[:len(only2021_df)]
 
             
 
