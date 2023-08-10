@@ -226,7 +226,7 @@ with tab3:
             input_df = bundle_df
             prediction = xgbr_gs.predict(input_df)
             output_data = pd.DataFrame(input_df, columns = input_df.columns)
-            cal_output = output_data
+            cal_output = pd.DataFrame(input_df, columns = input_df.columns)
             output_data = pd.concat([qty_df, output_data], axis=1)
             output_data = pd.concat([date_df, output_data], axis=1)
             output_data['PREDICTED_PRICE'] = prediction 
