@@ -314,7 +314,7 @@ with tab3:
             st.write(hello)
             st.write("Number of rows in DataFrame:", len(random_rows))
 
-            predicted_2022 = top_n_rows['PREDICTED_PRICE'].sum()
+            predicted_2022 = random_rows['PREDICTED_PRICE'].sum()
 
             
 
