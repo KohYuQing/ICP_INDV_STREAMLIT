@@ -298,21 +298,21 @@ with tab3:
 
             predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
 
-            len2021 = len(only2021_df) 
-            
+            len2021 = len(only2021_df) -10000
+            hello = len(woy2022_df)
 
             sorted_df = noscale.sort_values(by='PREDICTED_PRICE', ascending=False)
-            # random_rows = noscale.sample(n=len2021)
-            top_n_rows = sorted_df.iloc[:len2021]
+            random_rows = noscale.sample(n=len2021)
+            top_n_rows = sorted_df.iloc[:10000]
 
-            # concatenated_df = pd.concat([random_rows, top_n_rows])
+            concatenated_df = pd.concat([random_rows, top_n_rows])
             
 
             
 
     
 
-            predicted_2022 = top_n_rows['PREDICTED_PRICE'].sum()
+            predicted_2022 = concatenated_df['PREDICTED_PRICE'].sum()
             percentage1 = ((predicted_2022/predicted_2021) * 100) - 100
 
             st.write('<span style="font-size: 24px; font-weight: bold;">Overall Sales Comparison 💰💵</span>', unsafe_allow_html=True)
