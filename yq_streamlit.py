@@ -230,6 +230,7 @@ with tab3:
             output_data = pd.concat([qty_df, output_data], axis=1)
             output_data = pd.concat([date_df, output_data], axis=1)
             output_data['PREDICTED_PRICE'] = prediction 
+            cal_output['PREDICTED_PRICE'] = prediction 
             output_data['SEASON'] = output_data['SEASON'].replace({v: k for k, v in season_mapping.items()})
             output_data['CITY'] = output_data['CITY'].replace({v: k for k, v in city_mapping.items()})
             output_data['ITEM_CATEGORY'] = output_data['ITEM_CATEGORY'].replace({v: k for k, v in itemcat_mapping.items()})
@@ -289,7 +290,7 @@ with tab3:
             else:
                 st.error('Percentage Decrease: {:.2f}%.'.format(percentage))
             
-            predicted_2022 = output_data['PREDICTED_PRICE'].sum()
+            predicted_202df = output_data['PREDICTED_PRICE'].sum()
 
             predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
 
@@ -302,7 +303,7 @@ with tab3:
             st.write("Number of rows in DataFrame:", len(random_rows))
 
 
-            
+            predicted_2022 = cal_output['PREDICTED_PRICE'].sum()
             
 
             st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2022))
