@@ -292,8 +292,13 @@ with tab3:
 
             predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
 
-            st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2022))
-            st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2021))
+            len2021 = len(only2021_df)
+
+            random_rows = output_data.sample(n=5)
+            
+
+            st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(random_rows))
+            st.write("Overall Predicted Sales for 2021: ${:.2f}.".format(predicted_2021))
 
 
   #Tab 3 code here
