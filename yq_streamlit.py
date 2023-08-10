@@ -320,10 +320,10 @@ with tab3:
             st.success("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2022))
             st.write('Predicted Sales for 2021')
             st.success("Overall Predicted Sales for 2021: ${:.2f}.".format(predicted_2021))
-            if percentage > 0:
-                st.success('Percentage Increase: {:.2f}%.'.format(percentage))
+            if percentage1 > 0:
+                st.success('Percentage Increase: {:.2f}%.'.format(percentage1))
             else:
-                st.error('Percentage Decrease: {:.2f}%.'.format(percentage))
+                st.error('Percentage Decrease: {:.2f}%.'.format(percentage1))
 
 
   #Tab 3 code here
