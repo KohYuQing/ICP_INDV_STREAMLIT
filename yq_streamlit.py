@@ -212,6 +212,7 @@ with tab3:
         qty_df = bundle_df['TOTAL_QTY_SOLD']
         date_df = bundle_df['DATE']
         bundle_df = bundle_df.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
+        main_drop = maintable.drop(['TOTAL_SALES_PER_ITEM', 'TOTAL_QTY_SOLD', 'DATE'], axis = 1)
         ## map values to put in dataframe
         bundle_df['SEASON'] = bundle_df['SEASON'].map(season_mapping)
         bundle_df['CITY'] = bundle_df['CITY'].map(city_mapping)
@@ -225,12 +226,13 @@ with tab3:
             input_data = column_names
             input_df = bundle_df
             prediction = xgbr_gs.predict(input_df)
+            prediction1 = xgbr_gs.predict(main_drop)
             output_data = pd.DataFrame(input_df, columns = input_df.columns)
-            cal_output = pd.DataFrame(input_df, columns = input_df.columns)
+            cal_output = pd.DataFrame(main_drop, columns = main_drop.columns)
             output_data = pd.concat([qty_df, output_data], axis=1)
             output_data = pd.concat([date_df, output_data], axis=1)
             output_data['PREDICTED_PRICE'] = prediction 
-            cal_output['PREDICTED_PRICE'] = prediction 
+            cal_output['PREDICTED_PRICE'] = prediction1 
             output_data['SEASON'] = output_data['SEASON'].replace({v: k for k, v in season_mapping.items()})
             output_data['CITY'] = output_data['CITY'].replace({v: k for k, v in city_mapping.items()})
             output_data['ITEM_CATEGORY'] = output_data['ITEM_CATEGORY'].replace({v: k for k, v in itemcat_mapping.items()})
