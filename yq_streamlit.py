@@ -294,10 +294,11 @@ with tab3:
 
             len2021 = len(only2021_df)
 
-            random_rows = output_data.sample(n=5)
+            random_rows = output_data.sample(n=len2021)
+            predicted_random = random_rows ['PREDICTED_PRICE'].sum()
             
 
-            st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(random_rows))
+            st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_random))
             st.write("Overall Predicted Sales for 2021: ${:.2f}.".format(predicted_2021))
 
 
