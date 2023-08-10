@@ -62,6 +62,7 @@ with tab3:
     github_url = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/y2022_data_withqty.zip"
     maintable = read_csv_from_zipped_github(github_url)
     github_url_woy2022 = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/woy2022_data.zip"
+    noscale = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/final_data_noscaler.zip"
     woy2022_df = read_csv_from_zipped_github(github_url_woy2022)
     only2021_df = read_csv_from_zipped_github(github_url_woy2022)
 
@@ -69,10 +70,7 @@ with tab3:
     with open('xgbr_gs.pkl', 'rb') as file:
         xgbr_gs = joblib.load(file)
 
-    st.write("Number of rows in DataFrame:", len(woy2022_df))
-    only2021_df['DATE'] = pd.to_datetime(only2021_df['DATE'])
-    only2021_df = only2021_df[only2021_df['DATE'].dt.year == 2021]
-    st.write("Number of rows in DataFrame:", len(only2021_df))
+    
 
 
 
@@ -226,13 +224,13 @@ with tab3:
             input_data = column_names
             input_df = bundle_df
             prediction = xgbr_gs.predict(input_df)
-            prediction1 = xgbr_gs.predict(main_drop)
+            prediction1 = xgbr_gs.predict(noscale)
             output_data = pd.DataFrame(input_df, columns = input_df.columns)
-            cal_output = pd.DataFrame(main_drop, columns = main_drop.columns)
+            noscale = pd.DataFrame(noscale, columns = noscale.columns)
             output_data = pd.concat([qty_df, output_data], axis=1)
             output_data = pd.concat([date_df, output_data], axis=1)
             output_data['PREDICTED_PRICE'] = prediction 
-            cal_output['PREDICTED_PRICE'] = prediction1 
+            noscale['PREDICTED_PRICE'] = prediction1 
             output_data['SEASON'] = output_data['SEASON'].replace({v: k for k, v in season_mapping.items()})
             output_data['CITY'] = output_data['CITY'].replace({v: k for k, v in city_mapping.items()})
             output_data['ITEM_CATEGORY'] = output_data['ITEM_CATEGORY'].replace({v: k for k, v in itemcat_mapping.items()})
@@ -299,8 +297,8 @@ with tab3:
 
             len2021 = len(only2021_df) 
 
-            sorted_df = cal_output.sort_values(by='PREDICTED_PRICE', ascending=False)
-            len1 =  len(cal_output) 
+            sorted_df = noscale.sort_values(by='PREDICTED_PRICE', ascending=False)
+            len1 =  len(noscale) 
             top_n_rows = sorted_df.iloc[:len(only2021_df)]
 
             
