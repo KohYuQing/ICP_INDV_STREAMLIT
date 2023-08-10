@@ -264,11 +264,18 @@ with tab3:
             column_sum_2021 = filter2021['TOTAL_SALES_PER_ITEM'].sum()
             column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
 
-            cal_diff% = col_sum_2021
+            percentage = ((column_sum_2022/column_sum_2021) * 100) - 100
+
+            
 
 
             st.success('The total sales for 2021: ${:.2f}.'.format(column_sum_2021))
             st.success('The predicted sales with bundle pricing for 2022: ${:.2f}.'.format(column_sum_2022))
+           
+            if percentage > 0:
+                st.success('Percentage Increase: {:.2f}%.'.format(percentage))
+            else:
+                st.error('Percentage Decrease: {:.2f}%.'.format(percentage))
 
   #Tab 3 code here
 
