@@ -303,24 +303,27 @@ with tab3:
             sorted_df = noscale.sort_values(by='PREDICTED_PRICE', ascending=False)
             random_rows = noscale.sample(n=len2021)
             top_n_rows = sorted_df.iloc[:1000]
-            # len1 =  len(top_n_rows)
+
             concatenated_df = pd.concat([random_rows, top_n_rows])
-
             
 
             
 
-
-            st.write(random_rows)
-            st.write(hello)
-            st.write("Number of rows in DataFrame:", len(random_rows))
+    
 
             predicted_2022 = concatenated_df['PREDICTED_PRICE'].sum()
+            percentage1 = ((predicted_2022/predicted_2021) * 100) - 100
 
-            
+            st.write('<span style="font-size: 18px; font-weight: bold;">Overall Sales Comparison</span>', unsafe_allow_html=True)
+            st.write('Predicted Sales for 2022')
 
-            st.write("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2022))
-            st.write("Overall Predicted Sales for 2021: ${:.2f}.".format(predicted_2021))
+            st.success("Overall Predicted Sales for 2022: ${:.2f}.".format(predicted_2022))
+            st.write('Predicted Sales for 2021')
+            st.success("Overall Predicted Sales for 2021: ${:.2f}.".format(predicted_2021))
+            if percentage > 0:
+                st.success('Percentage Increase: {:.2f}%.'.format(percentage))
+            else:
+                st.error('Percentage Decrease: {:.2f}%.'.format(percentage))
 
 
   #Tab 3 code here
