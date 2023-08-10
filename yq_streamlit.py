@@ -283,7 +283,7 @@ with tab3:
             
             st.write('Total Sales for 2021:')
             st.success('The total sales for 2021: ${:.2f}.'.format(column_sum_2021))
-            st.write('Total Sales for 2022:')
+            st.write('Predicted Sales for 2022:')
             st.success('The predicted sales with bundle pricing for 2022: ${:.2f}.'.format(column_sum_2022))
            
             if percentage > 0:
