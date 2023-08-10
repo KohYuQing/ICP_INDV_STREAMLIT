@@ -300,8 +300,9 @@ with tab3:
             len2021 = len(only2021_df) 
 
             sorted_df = noscale.sort_values(by='PREDICTED_PRICE', ascending=False)
-            len1 =  len(noscale) 
+            
             top_n_rows = sorted_df.iloc[:len(only2021_df)]
+            len1 =  len(top_n_rows)
 
             
 
