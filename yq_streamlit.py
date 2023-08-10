@@ -280,16 +280,17 @@ with tab3:
             column_sum_2022 = final_df['PREDICTED_PRICE'].sum()
 
             percentage = ((column_sum_2022/column_sum_2021) * 100) - 100
-
             
-
-
+            st.write('Total Sales for 2021:')
             st.success('The total sales for 2021: ${:.2f}.'.format(column_sum_2021))
+            st.write('Total Sales for 2022:')
             st.success('The predicted sales with bundle pricing for 2022: ${:.2f}.'.format(column_sum_2022))
            
             if percentage > 0:
+                st.write('Percentage Increase:')
                 st.success('Percentage Increase: {:.2f}%.'.format(percentage))
             else:
+                st.write('Percentage Decrease:')
                 st.error('Percentage Decrease: {:.2f}%.'.format(percentage))
             
             
@@ -297,21 +298,21 @@ with tab3:
 
             predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
 
-            len2021 = len(only2021_df) -1000
-            hello = len(woy2022_df)
+            len2021 = len(only2021_df) 
+            
 
             sorted_df = noscale.sort_values(by='PREDICTED_PRICE', ascending=False)
-            random_rows = noscale.sample(n=len2021)
-            top_n_rows = sorted_df.iloc[:1000]
+            # random_rows = noscale.sample(n=len2021)
+            top_n_rows = sorted_df.iloc[:len2021]
 
-            concatenated_df = pd.concat([random_rows, top_n_rows])
+            # concatenated_df = pd.concat([random_rows, top_n_rows])
             
 
             
 
     
 
-            predicted_2022 = concatenated_df['PREDICTED_PRICE'].sum()
+            predicted_2022 = top_n_rows['PREDICTED_PRICE'].sum()
             percentage1 = ((predicted_2022/predicted_2021) * 100) - 100
 
             st.write('<span style="font-size: 24px; font-weight: bold;">Overall Sales Comparison 💰💵</span>', unsafe_allow_html=True)
@@ -321,8 +322,10 @@ with tab3:
             st.write('Predicted Sales for 2021:')
             st.success("Overall Predicted Sales for 2021: ${:.2f}.".format(predicted_2021))
             if percentage1 > 0:
+                st.write('Percentage Increase:')
                 st.success('Percentage Increase: {:.2f}%.'.format(percentage1))
             else:
+                st.write('Percentage Decrease:')
                 st.error('Percentage Decrease: {:.2f}%.'.format(percentage1))
 
 
