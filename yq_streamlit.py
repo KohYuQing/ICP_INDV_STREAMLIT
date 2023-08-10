@@ -63,11 +63,20 @@ with tab3:
     maintable = read_csv_from_zipped_github(github_url)
     github_url_woy2022 = "https://github.com/KohYuQing/ICP_INDV_STREAMLIT/raw/main/woy2022_data.zip"
     woy2022_df = read_csv_from_zipped_github(github_url_woy2022)
+    only2021_df = read_csv_from_zipped_github(github_url_woy2022)
+
 
     with open('xgbr_gs.pkl', 'rb') as file:
         xgbr_gs = joblib.load(file)
 
     st.write("Number of rows in DataFrame:", len(woy2022_df))
+    only2021_df['DATE'] = pd.to_datetime(only2021_df['DATE'])
+    only2021_df = only2021_df[only2021_df['DATE'].dt.year == 2021]
+    st.write("Number of rows in DataFrame:", len(only2021_df))
+
+
+
+    
 
     
     
