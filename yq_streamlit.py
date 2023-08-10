@@ -297,13 +297,16 @@ with tab3:
 
             len2021 = len(only2021_df) 
 
-            
+            # sorted_df = cal_output.sort_values(by='PREDICTED_PRICE', ascending=False)
 
-            random_rows = cal_output.sample(n= len2021, replace = True )
-            st.write(random_rows)
-            st.write("Number of rows in DataFrame:", len(random_rows))
+            # random_rows = cal_output.sample(n= len2021, replace = True )
+            top_n_rows = cal_output.nlargest(len2021, 'PREDICTED_PRICE')
 
-            predicted_2022 = random_rows['PREDICTED_PRICE'].sum()
+
+            st.write(top_n_rows)
+            st.write("Number of rows in DataFrame:", len(top_n_rows))
+
+            predicted_2022 = top_n_rows['PREDICTED_PRICE'].sum()
 
             
 
