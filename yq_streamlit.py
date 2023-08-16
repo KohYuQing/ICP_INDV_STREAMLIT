@@ -318,7 +318,9 @@ with tab3:
             predicted_2022df['MENU_TYPE'] = predicted_2022df['MENU_TYPE'].replace(reverse_menut_mapping)
             predicted_2022df
 
-            merged_df = pd.merge(predicted_2022df, sum_predicted_2021df, on='MENU_TYPE')
+            merged_df = pd.merge(sum_predicted_2021df, predicted_2022df, on='MENU_TYPE')
+            merged_df['Percentage Difference'] =  ((predicted_2022df['Predicted_Price']/sum_predicted_2021df['TOTAL_SALES_PER_ITEM']) * 100) - 100
+
 
             # Print the merged DataFrame
             merged_df
