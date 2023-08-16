@@ -315,9 +315,13 @@ with tab3:
             predicted_2022df = concatenated_df.groupby('MENU_TYPE')['PREDICTED_PRICE'].sum()
             predicted_2022df = pd.DataFrame(predicted_2022df).reset_index()
             reverse_menut_mapping = {v: k for k, v in menut_mapping.items()}
-            predicted_2022df['reversed_MENU_TYPE'] = predicted_2022df['MENU_TYPE'].replace(reverse_menut_mapping)
-            # predicted_2022df['menut_mapping_int'] = predicted_2022df['MENU_TYPE'].map(menut_mapping)
+            predicted_2022df['MENU_TYPE'] = predicted_2022df['MENU_TYPE'].replace(reverse_menut_mapping)
             predicted_2022df
+
+            merged_df = pd.merge(predicted_2022df, sum_predicted_2021df, on='MENU_TYPE')
+
+            # Print the merged DataFrame
+            merged_df
             
            
             
