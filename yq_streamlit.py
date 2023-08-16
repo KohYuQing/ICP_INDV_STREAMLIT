@@ -258,9 +258,6 @@ with tab3:
             final_df = final_df.drop(columns=['discount_10%','DATE_MONTH'])
             final_df = final_df.reset_index(drop = True)
             filter2021 = filter2021.drop(columns=['discount_10%','DATE_MONTH','TRUCK_ID'])
-            ## TAKENOTE
-            filter2021['shifted_value'] = filter2021.groupby('DATE')['SHIFT_ID']
-
             filter2021.rename(columns={'TOTAL_SALES_PER_ITEM': 'PREDICTED_PRICE'}, inplace=True)
             filter2021 = filter2021.reindex(columns=final_df.columns, fill_value=None)
             filter2021.rename(columns={'PREDICTED_PRICE': 'TOTAL_SALES_PER_ITEM'}, inplace=True)
