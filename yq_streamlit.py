@@ -320,8 +320,7 @@ with tab3:
 
             merged_df = pd.merge(sum_predicted_2021df, predicted_2022df, on='MENU_TYPE')
             merged_df = pd.DataFrame(merged_df).reset_index()
-            difference = predicted_2022df['PREDICTED_PRICE'] - sum_predicted_2021df['TOTAL_SALES_PER_ITEM']
-            merged_df['Percentage_Difference'] = difference
+
 
             # # Initialize an empty list to store the differences
             # differences = []
