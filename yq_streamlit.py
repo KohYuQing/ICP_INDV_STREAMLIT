@@ -257,8 +257,9 @@ with tab3:
             final_df = output_data[output_data['DATE'].isin(unique_dates)]
             final_df = final_df.drop(columns=['discount_10%','DATE_MONTH'])
             final_df = final_df.reset_index(drop = True)
-            
             filter2021 = filter2021.drop(columns=['discount_10%','DATE_MONTH','TRUCK_ID'])
+            filter2021['shifted_value'] = filter2021.groupby('DATE')['SHIFT_ID']
+
             filter2021.rename(columns={'TOTAL_SALES_PER_ITEM': 'PREDICTED_PRICE'}, inplace=True)
             filter2021 = filter2021.reindex(columns=final_df.columns, fill_value=None)
             filter2021.rename(columns={'PREDICTED_PRICE': 'TOTAL_SALES_PER_ITEM'}, inplace=True)
@@ -306,48 +307,6 @@ with tab3:
             top_n_rows = sorted_df.iloc[:7500]
 
             concatenated_df = pd.concat([random_rows, top_n_rows])
-            
-            sum_predicted_2021df = woy2022_df.groupby('MENU_TYPE')['TOTAL_SALES_PER_ITEM'].sum()
-            sum_predicted_2021df = pd.DataFrame(sum_predicted_2021df).reset_index()
-            sum_predicted_2021df
-            
-
-            predicted_2022df = concatenated_df.groupby('MENU_TYPE')['PREDICTED_PRICE'].sum()
-            predicted_2022df = pd.DataFrame(predicted_2022df).reset_index()
-            reverse_menut_mapping = {v: k for k, v in menut_mapping.items()}
-            predicted_2022df['MENU_TYPE'] = predicted_2022df['MENU_TYPE'].replace(reverse_menut_mapping)
-            predicted_2022df
-
-            merged_df = pd.merge(sum_predicted_2021df, predicted_2022df, on='MENU_TYPE')
-            merged_df = pd.DataFrame(merged_df).reset_index()
-
-
-            # # Initialize an empty list to store the differences
-            # differences = []
-
-            # # Use a for loop to calculate differences and append to the list
-            # for index, row in merged_df.iterrows():
-            #     diff = predicted_2022df['PREDICTED_PRICE'] - sum_predicted_2021df['TOTAL_SALES_PER_ITEM']
-            #     differences.append(diff)
-
-            # # Create a new column 'Differences' in the DataFrame
-            # merged_df['Differences'] = differences
-
-
-
-
-            # Print the merged DataFrame
-            merged_df
-            
-           
-            
-
-            
-
-            
-
-            
-
     
 
             predicted_2022 = concatenated_df['PREDICTED_PRICE'].sum()
