@@ -99,7 +99,7 @@ with tab3:
     menut_reverse_mapping = {v: k for k, v in menut_mapping.items()}
     menut_labels = list(menut_mapping.keys())
 
-    truckb_mapping = {'The Mega Melt': 1, 'Smoky BBQ': 2, "Guac n' Roll": 3, 'Peking Truck': 4, 'Revenge of the Curds': 5, 'Not the Wurst Hot Dogs': 6, 'Plant Palace': 7, 'Le Coin des Crêpes': 8, 'Better Off Bread': 9, 'Kitakata Ramen Bar': 10, 'Tasty Tibs': 11, 'Cheeky Greek': 12, "Nani's Kitchen": 13, 'The Mac Shack': 14}
+    truckb_mapping = {'The Mega Melt': 0, 'Smoky BBQ': 1, "Guac n' Roll": 2, 'Peking Truck': 3, 'Revenge of the Curds': 4, 'Not the Wurst Hot Dogs': 5, 'Plant Palace': 6, 'Le Coin des Crêpes': 7, 'Better Off Bread': 8, 'Kitakata Ramen Bar': 9, 'Tasty Tibs': 10, 'Cheeky Greek': 11, "Nani's Kitchen": 12, 'The Mac Shack': 13}
     truckb_reverse_mapping = {v: k for k, v in truckb_mapping.items()}
     truckb_labels = list(truckb_mapping.keys())
     truckb_values = list(truckb_mapping.values())
@@ -310,10 +310,16 @@ with tab3:
             sum_predicted_2021df = woy2022_df.groupby('MENU_TYPE')['TOTAL_SALES_PER_ITEM'].sum()
             sum_predicted_2021df = pd.DataFrame(sum_predicted_2021df).reset_index()
             sum_predicted_2021df
+            
 
             predicted_2022df = concatenated_df.groupby('MENU_TYPE')['PREDICTED_PRICE'].sum()
             predicted_2022df = pd.DataFrame(predicted_2022df).reset_index()
+            reverse_menut_mapping = {v: k for k, v in menut_mapping.items()}
+            predicted_2022df['reversed_MENU_TYPE'] = predicted_2022df['MENU_TYPE'].replace(reverse_menut_mapping)
+            # predicted_2022df['menut_mapping_int'] = predicted_2022df['MENU_TYPE'].map(menut_mapping)
             predicted_2022df
+            
+           
             
 
             
