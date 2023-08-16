@@ -13,17 +13,17 @@ import random
 
 st.set_page_config(page_title='INVEMP Tasty Bytes Group 5', page_icon='🍖🍕🍜')
 
-st.sidebar.title("INVEMP: Inventory/Warehouse Management & Prediction on Sales per Menu Item")
-st.sidebar.markdown("This web app allows you to explore the internal inventory of Tasty Bytes. You can explore these functions in the web app (Description of Page)")
+st.sidebar.title("INVEMP: Menu Optimization🗒 & Customer Churn 👫")
+st.sidebar.markdown("This web application allows you to optimize your menu and inspect customer behavior to achieve the high level goal of increasing sales 🤑💰")
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(['Prediction A', 'Prediction B', 'Bundled Items Sales Analysis', 'Prediction D', 'Prediction E'])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(['Churn Prediction', 'Customer Revenue', 'Bundled Items Sales Analysis', 'Truck Implementation', 'Sales Prediction Australia'])
 
 with tab1:
-  st.write('hello')
+  st.write('')
 with tab2:
   #Tab 2 code here
   #Hector/Shahid
-  st.write('hello')
+  st.write('')
 with tab3:
     st.title('🌭🥤Bundling of Items 🍔🍦')
     st.markdown('________________________________________________')
@@ -333,8 +333,8 @@ with tab3:
 
 with tab4:
   #Tab 4 code here
-  st.write('hello')
+  st.write('')
 
 with tab5:
   #Tab 5 code here
-  st.write('hello')
+  st.write('')
