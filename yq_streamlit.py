@@ -319,7 +319,7 @@ with tab3:
             predicted_2022df
 
             merged_df = pd.merge(sum_predicted_2021df, predicted_2022df, on='MENU_TYPE')
-            difference = ((predicted_2022df['PREDICTED_PRICE']/sum_predicted_2021df['TOTAL_SALES_PER_ITEM']) * 100) - 100
+            difference = predicted_2022df['PREDICTED_PRICE'] - sum_predicted_2021df['TOTAL_SALES_PER_ITEM']
             merged_df['Percentage_Difference'] = difference
 
 
