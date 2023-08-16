@@ -313,8 +313,8 @@ with tab3:
 
             predicted_2022df = concatenated_df.groupby('MENU_TYPE')['PREDICTED_PRICE'].sum()
             predicted_2022df = pd.DataFrame(predicted_2022df).reset_index()
+            predicted_2022df['MENU_TYPE'] = predicted_2022df['MENU_TYPE'].map(menut_mapping)
             predicted_2022df
-            # predicted_2022df['MENU_TYPE'] = predicted_2022df['MENU_TYPE'].map(menut_mapping)
             
 
             
