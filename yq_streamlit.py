@@ -307,7 +307,7 @@ with tab3:
 
             concatenated_df = pd.concat([random_rows, top_n_rows])
             
-            predicted_2022df = output_data.groupby('MENU_TYPE')['PREDICTED_PRICE'].sum()
+            predicted_2022df = concatenated_df.groupby('MENU_TYPE')['PREDICTED_PRICE'].sum()
             predicted_2022df
 
             
