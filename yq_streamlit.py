@@ -294,7 +294,7 @@ with tab3:
                 st.error('Percentage Decrease: {:.2f}%.'.format(percentage))
             
             
-            predicted_202df = output_data['PREDICTED_PRICE'].sum()
+            
 
             predicted_2021 = woy2022_df['TOTAL_SALES_PER_ITEM'].sum()
 
@@ -309,6 +309,8 @@ with tab3:
             
             predicted_2022df = concatenated_df.groupby('MENU_TYPE')['PREDICTED_PRICE'].sum()
             predicted_2022df
+
+            sum_predicted_2022df = woy2022_df.groupby('MENU_TYPE')['PREDICTED_PRICE'].sum()
 
             
 
