@@ -308,6 +308,7 @@ with tab3:
             concatenated_df = pd.concat([random_rows, top_n_rows])
             
             predicted_2022df = concatenated_df.groupby('MENU_TYPE')['PREDICTED_PRICE'].sum()
+            predicted_2022df = pd.DataFrame(predicted_2022df, columns = predicted_2022df.columns)
             predicted_2022df['MENU_TYPE'] = predicted_2022df['MENU_TYPE'].map(menut_mapping)
             predicted_2022df
 
